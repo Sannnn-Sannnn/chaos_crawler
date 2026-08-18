@@ -1,3 +1,4 @@
+using Dungeon;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,5 +34,17 @@ public class PlayerMovement : MonoBehaviour
   private void FixedUpdate()
   {
     rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+  }
+  
+  public void OnTriggerEnter2D(Collider2D other)
+  {
+    if (other.gameObject.CompareTag("Flag"))
+    {
+      var flag = other.gameObject.GetComponent<Flag>();
+      Debug.Log("other: " + other);
+      Debug.Log("compo: " + other.GetComponent<Flag>());
+      Debug.Log("flag : " + flag);
+      flag.Reset();
+    }
   }
 }

@@ -3239,7 +3239,7 @@ GameObject:
   - component: {fileID: 856934602}
   m_Layer: 0
   m_Name: DungeonGenerator
-  m_TagString: Untagged
+  m_TagString: DungeonGenerator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3271,13 +3271,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fea4cc85ce45c1be9fce6ee05f6138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dungeon.DungeonGenerator
-  maxRooms: 14
-  maxIterations: 100
-  minDistance: 3
-  maxDistance: 7
-  minX: 1
+  maxRooms: 100
+  maxIterations: 2
+  minDistance: 4
+  maxDistance: 6
+  minX: 0
   initialProbability: 0.5
-  minProbability: 0
+  minProbability: 0.05
   probabilityDecrement: 0
   gridScale: 20
   roomPref: {fileID: 6525627106680853277, guid: 1e52faa58930fcd33b5bce6ec8961a16, type: 3}
@@ -4946,7 +4946,7 @@ GameObject:
   - component: {fileID: 1340700915}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5008,7 +5008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b644a0bd17604121bbba6973cc5be7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 15
+  speed: 30
   moveAction: {fileID: -3903710420828898550, guid: a5269ea1f2ffc3d439d926e82d5ca6c8, type: 3}
 --- !u!61 &1340700916
 BoxCollider2D:
@@ -7482,7 +7482,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7775,7 +7775,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 960932661
+  m_SortingLayerID: -1981048127
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0

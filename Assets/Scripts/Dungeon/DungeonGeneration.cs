@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class DungeonGeneration
@@ -69,7 +70,7 @@ public class DungeonGeneration
         // 3. Populate dungeon
         int roomCount = nextIteration.Count;
         float p = initialProbability;
-        Vector2Int[] directions = { new (1, 0), new (0, 1), new (1, 0), new (0, -1) };
+        Vector2Int[] directions = { new (1, 0), new (0, 1), new (-1, 0), new (0, -1) };
         int currentIteration = 0;
 
         while (nextIteration.Count > 0 && p >= minProbability && currentIteration < maxIterations)
@@ -87,7 +88,7 @@ public class DungeonGeneration
                         {
                             newRooms.Add(newRoom);
                             roomCount += 1;
-                            if (roomCount == maxRooms)
+                            if (roomCount >= maxRooms)
                             {
                                 dungeon.AddRange(nextIteration);
                                 dungeon.AddRange(newRooms);
@@ -104,6 +105,7 @@ public class DungeonGeneration
             currentIteration++;
         }
 
+        dungeon.AddRange(nextIteration);
         return (dungeon, corridors, end);
     }
 }

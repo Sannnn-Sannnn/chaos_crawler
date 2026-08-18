@@ -130,6 +130,9 @@ namespace Dungeon
 
       _corridors.Clear();
       Awake();
+
+      var player = GameObject.FindGameObjectWithTag("Player");
+      player.transform.position = Vector3.zero;
     }
 
     public void ToggleAllDoors()
