@@ -20,6 +20,7 @@ namespace Dungeon
     [SerializeField] private float probabilityDecrement = 0.0f;
 
     [SerializeField] private int gridScale = 20;
+    [SerializeField] private bool spawnCorridors = false;
 
     /*
     [Header("Room Prefabs")]
@@ -74,9 +75,12 @@ namespace Dungeon
         var y = (float)(room1.y + room2.y) / 2;
         var position = new Vector3(x, y, 0) * gridScale;
 
-        var corridorPref = room1.x == room2.x ? verticalCorridorPref : horizontalCorridorPref;
-        var corridorObject = Instantiate(corridorPref, position, Quaternion.identity); 
-        _corridors.Add(corridorObject);
+        if (spawnCorridors)
+        {
+          var corridorPref = room1.x == room2.x ? verticalCorridorPref : horizontalCorridorPref;
+          var corridorObject = Instantiate(corridorPref, position, Quaternion.identity); 
+          _corridors.Add(corridorObject); 
+        }
         
         // Update doors
         // Case: vertical corridor

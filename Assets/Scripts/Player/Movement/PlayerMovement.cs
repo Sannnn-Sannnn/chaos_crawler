@@ -41,9 +41,6 @@ public class PlayerMovement : MonoBehaviour
     if (other.gameObject.CompareTag("Flag"))
     {
       var flag = other.gameObject.GetComponent<Flag>();
-      Debug.Log("other: " + other);
-      Debug.Log("compo: " + other.GetComponent<Flag>());
-      Debug.Log("flag : " + flag);
       flag.Reset();
     }
   }

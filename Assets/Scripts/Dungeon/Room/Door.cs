@@ -10,11 +10,14 @@ namespace Dungeon
 
     private GameObject _door;
     private GameObject _wall;
+    private GameObject _roomWall;
 
     public void Awake()
     {
       _door = transform.Find("Door").gameObject;
       _wall = transform.Find("Wall").gameObject;
+      _roomWall = transform.Find("Room wall").gameObject;
+      _roomWall.SetActive(false);
       _door.SetActive(false);
     }
 
@@ -32,11 +35,13 @@ namespace Dungeon
         isWall = true;
         _wall.SetActive(true);
         _door.SetActive(false);
+        _roomWall.SetActive(false);
       }
       else if (option == "door")
       {
         isWall = false;
         _wall.SetActive(false);
+        _roomWall.SetActive(true);
       }
     }
   }
