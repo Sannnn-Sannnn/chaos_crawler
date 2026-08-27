@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Enemy;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Dungeon
@@ -14,6 +15,7 @@ namespace Dungeon
     [SerializeField] private int maxEnemies;
     [SerializeField] private int roomHeight;
     [SerializeField] private int roomWidth;
+    [SerializeField] private int minDoorDistance = 0;
     private int _enemyAmount;
     private int _enemyCount;
     private List<Vector2> _spawnPositions = new();
@@ -51,12 +53,35 @@ namespace Dungeon
         var posX = Random.Range(-roomHeight / 2, roomHeight / 2 + 1);
         var posY = Random.Range(-roomWidth / 2, roomWidth / 2 + 1);
         var spawnPosition = transform.position + new Vector3(posX, posY, transform.position.z);
-        if (!_spawnPositions.Contains(spawnPosition))
+        if (!_spawnPositions.Contains(spawnPosition) || IsCloseToDoor(spawnPosition))
         {
           _spawnPositions.Add(spawnPosition);
           return spawnPosition;
         }
       }
+    }
+
+    private bool IsCloseToDoor(Vector3 pos)
+    {
+      var northDoor = new Vector2(0, roomHeight / 2f);
+      var eastDoor = new Vector2(roomWidth / 2f, 0);
+      var southDoor = new Vector2(0, -roomHeight / 2f);
+      var westDoor = new Vector2(-roomWidth / 2f, 0);
+
+      float[] distances =
+      {
+        Vector3.Distance(pos, northDoor), Vector3.Distance(pos, eastDoor), Vector3.Distance(pos, southDoor),
+        Vector3.Distance(pos, westDoor)
+      };
+
+      foreach (var distance in distances)
+      {
+        if (distance > minDoorDistance)
+        {
+          return true;
+        }
+      }
+      return false;
     }
 
     public void Down()
