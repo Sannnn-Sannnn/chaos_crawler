@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] private int maxHealth;
     [SerializeField] private int health;
+    private EnemySpawner _spawner;
     
     void Awake()
     {
@@ -16,13 +17,24 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    public void SetSpawner(EnemySpawner spawner)
+    {
+        _spawner = spawner;
     }
 
     public void Damage(int damage)
     {
         health -= damage;
+    }
+
+    private void Die()
+    {
+        _spawner.Down();
+        Destroy(gameObject);
     }
     
 }

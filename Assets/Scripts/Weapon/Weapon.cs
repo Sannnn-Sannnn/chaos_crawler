@@ -52,7 +52,8 @@ namespace Weapon
     {
       var bulletInstance = Instantiate(bullet);
       Bullet bulletComponent = bulletInstance.GetComponent<Bullet>();
-      bulletInstance.transform.position = transform.position + transform.right;
+      // bulletInstance.transform.position = transform.position + transform.right;
+      bulletInstance.transform.position = transform.position;
       bulletInstance.transform.rotation = transform.rotation;
       bulletComponent.SetDamage(damage);
       var direction = _mousePositionListener.GetAimDirection(transform.position);

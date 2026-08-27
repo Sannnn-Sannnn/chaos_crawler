@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   mouseClickListener: {fileID: 875131213862570412, guid: a5269ea1f2ffc3d439d926e82d5ca6c8, type: 3}
   bullet: {fileID: 5688210247292529260, guid: b0815c0c48cc79f879ea26eae75b9b9e, type: 3}
-  damage: 1
+  damage: 10
   cooldown: 0
   canHold: 0
 --- !u!1 &6405876444349754342

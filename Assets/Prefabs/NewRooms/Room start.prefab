@@ -2045,8 +2045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40fa75eaf713c56eb91acf8ebfb2f8c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dungeon.Room
-  hasDoors: 0
-  isOpen: 0
+  hasDoors: 1
+  isOpen: 1
 --- !u!1 &7662467357596071370
 GameObject:
   m_ObjectHideFlags: 0

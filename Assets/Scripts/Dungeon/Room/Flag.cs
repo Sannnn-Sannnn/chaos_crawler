@@ -5,16 +5,16 @@ namespace Dungeon
   public class Flag : MonoBehaviour
   {
 
-    private DungeonGenerator generator;
+    private DungeonGenerator _generator;
 
     private void Awake()
     {
-      generator = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonGenerator>();
+      _generator = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<DungeonGenerator>();
     }
 
     public void Reset()
     {
-      generator.regenerateDungeon();
+      _generator.regenerateDungeon();
     }
   }
 }
