@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208ed89737e04419d83f05b111883f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  mouseClickListener: {fileID: 875131213862570412, guid: a5269ea1f2ffc3d439d926e82d5ca6c8, type: 3}
+  mouseClickListener: {fileID: 2217566007168011551, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
   bullet: {fileID: 5688210247292529260, guid: b0815c0c48cc79f879ea26eae75b9b9e, type: 3}
   damage: 10
-  cooldown: 0
-  canHold: 0
+  cooldown: 10
+  canHold: 1
 --- !u!1 &6405876444349754342
 GameObject:
   m_ObjectHideFlags: 0

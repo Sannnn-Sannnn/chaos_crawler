@@ -6,7 +6,7 @@ namespace Dungeon
   public class DoorTrigger : MonoBehaviour
   {
 
-    [SerializeField] private bool wasCompleted = false;
+    [SerializeField] private bool activated = false;
 
     private DungeonGenerator _generator;
     private EnemySpawner _spawner;
@@ -22,8 +22,9 @@ namespace Dungeon
       var player = other.gameObject.GetComponent<PlayerMovement>();
       if (player == null) return;
 
-      if (!wasCompleted)
+      if (!activated)
       {
+        activated = true;
         _generator.ToggleAllDoors();
         _spawner.SpawnEnemies();
       }
@@ -31,7 +32,6 @@ namespace Dungeon
 
     public void Complete()
     {
-      wasCompleted = true;
       _generator.ToggleAllDoors();
     }
   }

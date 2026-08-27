@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6363230515993922769}
   - component: {fileID: -6148968434351689874}
   m_Layer: 9
-  m_Name: Bullet
+  m_Name: Blue Bullet
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5244493479317854872, guid: 2d86a9d104e6346b4bde3b76450f6c21, type: 3}
+  m_Sprite: {fileID: -3871471767683881844, guid: 626d4dcd2929841728b0a698bee0b0ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
