@@ -9,8 +9,15 @@ namespace Weapon
 
     private MouseListener _mousePositionListener;
     private SpriteRenderer _sprite;
+    
+    [Header("Objects")]
     [SerializeField] private InputActionReference mouseClickListener;
     [SerializeField] private GameObject bullet;
+    
+    [Header("Stats")]
+    [SerializeField] private int damage = 0;
+    [SerializeField] private int cooldown = 0;
+    [SerializeField] private bool canHold = false;
 
     private void OnEnable()
     {
@@ -29,7 +36,6 @@ namespace Weapon
       Shoot();
     }
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
       _sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
@@ -37,7 +43,6 @@ namespace Weapon
       if (listener  != null) _mousePositionListener = listener.GetComponent<MouseListener>();
     }
 
-    // Update is called once per frame
     void Update()
     {
       Rotate();
@@ -46,10 +51,12 @@ namespace Weapon
     private void Shoot()
     {
       var bulletInstance = Instantiate(bullet);
+      Bullet bulletComponent = bulletInstance.GetComponent<Bullet>();
       bulletInstance.transform.position = transform.position + transform.right;
       bulletInstance.transform.rotation = transform.rotation;
+      bulletComponent.SetDamage(damage);
       var direction = _mousePositionListener.GetAimDirection(transform.position);
-      bulletInstance.GetComponent<Bullet>().SetDirection(direction);
+      bulletComponent.SetDirection(direction);
     }   
 
     private void Rotate()

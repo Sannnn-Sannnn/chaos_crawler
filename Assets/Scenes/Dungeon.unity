@@ -879,8 +879,9 @@ GameObject:
   - component: {fileID: 355558343}
   - component: {fileID: 355558342}
   - component: {fileID: 355558344}
-  - component: {fileID: 355558345}
-  m_Layer: 0
+  - component: {fileID: 355558346}
+  - component: {fileID: 355558347}
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +929,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -943,8 +944,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &355558345
-BoxCollider2D:
+--- !u!114 &355558346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355558341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14894d35f4cb0b0e2bca298d56f72e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 10
+  health: 10
+--- !u!58 &355558347
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -978,17 +993,7 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.7
 --- !u!114 &379182250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4972,9 +4977,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1340700913}
   - component: {fileID: 1340700914}
-  - component: {fileID: 1340700916}
   - component: {fileID: 1340700915}
-  m_Layer: 0
+  - component: {fileID: 1340700916}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5041,8 +5046,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 15
   moveAction: {fileID: -3903710420828898550, guid: a5269ea1f2ffc3d439d926e82d5ca6c8, type: 3}
---- !u!61 &1340700916
-BoxCollider2D:
+--- !u!58 &1340700916
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5076,17 +5081,7 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!114 &1345965692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7206,7 +7201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1763158230}
   - component: {fileID: 1763158231}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7611,7 +7606,7 @@ GameObject:
   - component: {fileID: 1938664025}
   - component: {fileID: 1938664024}
   - component: {fileID: 1938664027}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -7887,7 +7882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1994450119}
   - component: {fileID: 1994450120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8013,7 +8008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007391368}
   - component: {fileID: 2007391369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MouseListener
   m_TagString: MouseListener
   m_Icon: {fileID: 0}
@@ -8270,6 +8265,14 @@ PrefabInstance:
     - target: {fileID: 5628383707689829465, guid: 11b4c31ebfb6250b4a4c9c9caef26d88, type: 3}
       propertyPath: m_Name
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628383707689829465, guid: 11b4c31ebfb6250b4a4c9c9caef26d88, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405876444349754342, guid: 11b4c31ebfb6250b4a4c9c9caef26d88, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8087279934969011731, guid: 11b4c31ebfb6250b4a4c9c9caef26d88, type: 3}
       propertyPath: m_LocalPosition.x

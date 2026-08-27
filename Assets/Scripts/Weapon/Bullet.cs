@@ -1,3 +1,4 @@
+using Enemy;
 using UnityEngine;
 
 namespace Weapon
@@ -8,12 +9,13 @@ namespace Weapon
     [SerializeField] private float lifetime = 5f;
     [SerializeField] private float speed = 10f;
     private float _birthTime;
+    private int _damage = 0;
     private Rigidbody2D _rb;
 
     private void Awake()
     {
       _birthTime = Time.time;
-      _rb =  GetComponent<Rigidbody2D>();
+      _rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -32,12 +34,20 @@ namespace Weapon
       _direction = direction;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void SetDamage(int damage)
     {
-      if (!collision.gameObject.CompareTag("Player"))
+      _damage = damage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    {
+      EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+      if (enemy != null)
       {
-        Destroy(gameObject);
+        enemy.Damage(_damage);
       }
+      Destroy(gameObject);
     }
   }
 }
