@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512359505574152849}
-  - component: {fileID: 6997023740131957139}
+  - component: {fileID: 5101470395246735944}
   m_Layer: 0
   m_Name: Cyan NRG
   m_TagString: Untagged
@@ -25,15 +25,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7219816508551703406}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.36, y: -1.176, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9211815988164651389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6997023740131957139
+--- !u!114 &5101470395246735944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,14 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7219816508551703406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 208ed89737e04419d83f05b111883f6c, type: 3}
+  m_Script: {fileID: 11500000, guid: dba0332cc17b40fc941d7018e6429439, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
   mouseClickListener: {fileID: 2217566007168011551, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
-  bullet: {fileID: 5688210247292529260, guid: b0815c0c48cc79f879ea26eae75b9b9e, type: 3}
+  bullet: {fileID: 5688210247292529260, guid: fe0d1018feda9c053a5e9f4f2a702a84, type: 3}
   damage: 10
-  cooldown: 10
-  canHold: 1
+  cooldown: 0.2
+  speed: 20
 --- !u!1 &8192075013702993463
 GameObject:
   m_ObjectHideFlags: 0

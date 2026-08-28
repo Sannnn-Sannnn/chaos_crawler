@@ -101,9 +101,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4003773876626773010}
-  - component: {fileID: 7383572235270138725}
+  - component: {fileID: 82364171626417282}
   m_Layer: 0
-  m_Name: Pink
+  m_Name: Pink Firework
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,15 +117,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6800633244885317576}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.582, y: -1.212, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5604744027641510816}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7383572235270138725
+--- !u!114 &82364171626417282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,11 +134,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6800633244885317576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 208ed89737e04419d83f05b111883f6c, type: 3}
+  m_Script: {fileID: 11500000, guid: dba0332cc17b40fc941d7018e6429439, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
   mouseClickListener: {fileID: 2217566007168011551, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
-  bullet: {fileID: 5688210247292529260, guid: b0815c0c48cc79f879ea26eae75b9b9e, type: 3}
-  damage: 10
-  cooldown: 10
-  canHold: 1
+  bullet: {fileID: 5688210247292529260, guid: ae25bf2a262dea4a3aa8eeaa26685a6a, type: 3}
+  damage: 30
+  cooldown: 2
+  speed: 20

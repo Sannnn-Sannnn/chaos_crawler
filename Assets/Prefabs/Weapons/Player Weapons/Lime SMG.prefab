@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8517767568897342509}
-  - component: {fileID: 8393122753820790546}
+  - component: {fileID: -4784202450533457068}
   m_Layer: 0
   m_Name: Lime SMG
   m_TagString: Untagged
@@ -26,14 +26,14 @@ Transform:
   m_GameObject: {fileID: 2813500350702405318}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.452, y: 0.868, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4632637833878944916}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8393122753820790546
+--- !u!114 &-4784202450533457068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,13 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2813500350702405318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61240559d1ee0d1b285fdf3fe0dd6cd9, type: 3}
+  m_Script: {fileID: 11500000, guid: dba0332cc17b40fc941d7018e6429439, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon.SMG
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
   mouseClickListener: {fileID: 2217566007168011551, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
   bullet: {fileID: 5688210247292529260, guid: b0815c0c48cc79f879ea26eae75b9b9e, type: 3}
   damage: 5
   cooldown: 0.1
+  speed: 20
 --- !u!1 &6221090272616630487
 GameObject:
   m_ObjectHideFlags: 0

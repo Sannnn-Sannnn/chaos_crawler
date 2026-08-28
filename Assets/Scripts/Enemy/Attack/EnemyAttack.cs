@@ -1,13 +1,14 @@
-using Enemy;
+using Player;
 using UnityEngine;
 
 namespace Weapon
 {
-  public class EnergyBullet : MonoBehaviour
+  public class EnemyAttack : MonoBehaviour, IBullet
   {
     private Vector2 _direction = Vector2.zero;
     [SerializeField] private float lifetime = 5f;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private bool canPierce = false;
+    private float _speed = 1f;
     private float _birthTime;
     private int _damage = 0;
     private Rigidbody2D _rb;
@@ -25,7 +26,7 @@ namespace Weapon
       {
         Destroy(gameObject);
       }
-      Vector2 newPosition = _rb.position + _direction * speed * Time.deltaTime;
+      Vector2 newPosition = _rb.position + _direction * _speed * Time.deltaTime;
       _rb.MovePosition(newPosition);
     }
 
@@ -39,15 +40,28 @@ namespace Weapon
       _damage = damage;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    //private void OnCollisionEnter2D(Collision2D collision)
+    public void SetSpeed(float newSpeed)
     {
-      EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
-      if (enemy != null)
+      _speed = newSpeed;
+    }
+
+    public void SetLifetime(float newLifetime)
+    {
+      lifetime = newLifetime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+      var player = collision.gameObject.GetComponent<PlayerHealth>();
+      if (player != null)
       {
-        enemy.Damage(_damage);
+        player.Damage(_damage);
+        if (!canPierce) Destroy(gameObject);
       }
-      Destroy(gameObject);
+      else
+      {
+        Destroy(gameObject); 
+      }
     }
   }
 }

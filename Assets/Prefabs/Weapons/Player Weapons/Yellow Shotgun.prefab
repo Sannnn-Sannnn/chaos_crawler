@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5193387520117950577}
-  - component: {fileID: 7255273099502189048}
+  - component: {fileID: 2286211554716661133}
   m_Layer: 0
   m_Name: Yellow Shotgun
   m_TagString: Untagged
@@ -25,15 +25,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6338750805600429112}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.662, y: 0.778, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8128826565540793065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7255273099502189048
+--- !u!114 &2286211554716661133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,14 +42,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6338750805600429112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 208ed89737e04419d83f05b111883f6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 175e381005eb4cefbcc740d7b7e05ad1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon.Shotgun
   mouseClickListener: {fileID: 2217566007168011551, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
-  bullet: {fileID: 5688210247292529260, guid: b0815c0c48cc79f879ea26eae75b9b9e, type: 3}
-  damage: 10
-  cooldown: 10
-  canHold: 1
+  bullet: {fileID: 5688210247292529260, guid: 31f5d69ca9f414521b80bbac8634e01d, type: 3}
+  damage: 2
+  cooldown: 1.5
+  bulletCount: 15
+  shotAngleDeviation: 15
+  speed: 20
+  bulletSpeedDeviation: 5
 --- !u!1 &8717679123192407511
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ namespace Dungeon
 
     public void Reset()
     {
-      _generator.regenerateDungeon();
+      _generator.RegenerateDungeon();
     }
   }
 }

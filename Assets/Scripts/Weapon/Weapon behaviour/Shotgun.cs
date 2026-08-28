@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 namespace Weapon
 {
-  public class SMG : MonoBehaviour
+  public class Shotgun : MonoBehaviour
   {
 
     private MouseListener _mousePositionListener;
@@ -15,14 +14,18 @@ namespace Weapon
 
     [Header("Stats")] [SerializeField] private int damage = 0;
     [SerializeField] private float cooldown = 0f;
+    [SerializeField] private int bulletCount = 0;
+    [SerializeField] private float shotAngleDeviation = 0f;
+    [SerializeField] private float speed = 0f;
+    [SerializeField] private float bulletSpeedDeviation = 0f;
     private bool _isHolding = false;
-    private float _lastShotTime = 0f;
+    private float _lastShotTime = -1000f;
 
     private void OnEnable()
     {
       mouseClickListener.action.Enable();
       mouseClickListener.action.started += OnAttackStarted;
-      mouseClickListener.action.canceled += OnAttackCanceled;
+        mouseClickListener.action.canceled += OnAttackCanceled;
     }
 
     private void OnDisable()
@@ -30,13 +33,12 @@ namespace Weapon
       mouseClickListener.action.started -= OnAttackStarted;
       mouseClickListener.action.canceled -= OnAttackCanceled;
       mouseClickListener.action.Disable();
-
     }
-    
+
     private void OnAttackStarted(InputAction.CallbackContext context)
     {
       _isHolding = true;
-        Shoot();
+      Shoot();
     }
 
     private void OnAttackCanceled(InputAction.CallbackContext context)
@@ -61,13 +63,22 @@ namespace Weapon
     {
       if (Time.time - _lastShotTime < cooldown) return;
       _lastShotTime = Time.time;
-      var bulletInstance = Instantiate(bullet);
-      Bullet bulletComponent = bulletInstance.GetComponent<Bullet>();
-      bulletInstance.transform.position = transform.position;
-      bulletInstance.transform.rotation = transform.rotation;
-      bulletComponent.SetDamage(damage);
-      var direction = _mousePositionListener.GetAimDirection(transform.position);
-      bulletComponent.SetDirection(direction);
+      var weaponDirection = _mousePositionListener.GetAimDirection(transform.position);
+      for (int i = 0; i <= bulletCount; i++)
+      {
+        var bulletInstance = Instantiate(bullet);
+        IBullet bulletComponent = bulletInstance.GetComponent<IBullet>();
+        bulletInstance.transform.position = transform.position + transform.right;
+        bulletInstance.transform.rotation = transform.rotation;
+        bulletComponent.SetDamage(damage);
+        
+        // Generate random direction to each bullet
+        var deviation = Quaternion.Euler(0f, 0f, Random.Range(-shotAngleDeviation, shotAngleDeviation)); 
+        var direction =  deviation * weaponDirection;
+        bulletComponent.SetDirection(direction);
+        bulletComponent.SetSpeed(speed + Random.Range(-bulletSpeedDeviation, bulletSpeedDeviation));
+        bulletInstance.transform.rotation *= deviation;
+      }
     }
 
     private void Rotate()
@@ -78,16 +89,8 @@ namespace Weapon
       var angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
       transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-
       // Sprite flipation
-      if (mouseDirection.x < 0)
-      {
-        _sprite.flipY = true;
-      }
-      else
-      {
-        _sprite.flipY = false;
-      }
+      _sprite.flipY = mouseDirection.x < 0? true : false;
     }
   }
 

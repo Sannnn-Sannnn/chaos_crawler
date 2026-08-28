@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 8275333076120618426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.628, y: 0.787, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -139,5 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
   mouseClickListener: {fileID: 2217566007168011551, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
   bullet: {fileID: 5688210247292529260, guid: d4421e2d93f524847b06d9616602c781, type: 3}
-  damage: 10
+  damage: 20
   cooldown: 0.5
+  speed: 20

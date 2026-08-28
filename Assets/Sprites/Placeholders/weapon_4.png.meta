@@ -138,9 +138,9 @@ TextureImporter:
       name: weapon_4_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 3
-        width: 8
+        width: 4
         height: 2
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

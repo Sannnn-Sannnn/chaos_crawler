@@ -1,13 +1,13 @@
-using Enemy;
 using UnityEngine;
 
 namespace Weapon
 {
-  public class Bullet : MonoBehaviour
+  public class CommonBullet : MonoBehaviour, IBullet
   {
     private Vector2 _direction = Vector2.zero;
     [SerializeField] private float lifetime = 5f;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float pierceCount = 1;
+    private float _speed = 1f;
     private float _birthTime;
     private int _damage = 0;
     private Rigidbody2D _rb;
@@ -25,7 +25,7 @@ namespace Weapon
       {
         Destroy(gameObject);
       }
-      Vector2 newPosition = _rb.position + _direction * speed * Time.deltaTime;
+      Vector2 newPosition = _rb.position + _direction * _speed * Time.deltaTime;
       _rb.MovePosition(newPosition);
     }
 
@@ -39,15 +39,30 @@ namespace Weapon
       _damage = damage;
     }
 
+    public void SetSpeed(float newSpeed)
+    {
+      _speed = newSpeed;
+    }
+
+    public void SetLifetime(float newLifetime)
+    {
+      lifetime = newLifetime;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     //private void OnCollisionEnter2D(Collision2D collision)
     {
-      EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+      var enemy = collision.gameObject.GetComponent<EnemyHealth>();
       if (enemy != null)
       {
         enemy.Damage(_damage);
+        pierceCount--;
+        if (pierceCount == 0) Destroy(gameObject);
       }
-      Destroy(gameObject);
+      else
+      {
+        Destroy(gameObject); 
+      }
     }
   }
 }

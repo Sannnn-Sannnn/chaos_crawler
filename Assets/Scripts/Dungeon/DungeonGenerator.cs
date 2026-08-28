@@ -42,6 +42,8 @@ namespace Dungeon
     private Dictionary<Vector2Int, GameObject> _rooms = new();
     private List<GameObject> _corridors = new();
 
+    private int _currentFloor = 1;
+
     public void Awake()
     {
       // Generate dungeon data
@@ -119,7 +121,7 @@ namespace Dungeon
       }
     }
 
-    public void regenerateDungeon()
+    public void RegenerateDungeon()
     {
       foreach (Vector2Int room in _rooms.Keys)
       {
@@ -137,6 +139,8 @@ namespace Dungeon
 
       var player = GameObject.FindGameObjectWithTag("Player");
       player.transform.position = Vector3.zero;
+
+      _currentFloor++;
     }
 
     public void ToggleAllDoors()
@@ -145,6 +149,11 @@ namespace Dungeon
       {
         _rooms[room].GetComponent<Room>().ToggleOpen();
       }
+    }
+
+    public int CurrentFloor()
+    {
+      return  _currentFloor;
     }
 
   }

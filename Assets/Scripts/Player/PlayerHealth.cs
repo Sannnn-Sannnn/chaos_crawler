@@ -1,0 +1,60 @@
+using System;
+using UnityEngine;
+
+namespace Player
+{
+  public class PlayerHealth : MonoBehaviour
+  {
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int currentHealth;
+
+    private void Awake()
+    {
+      currentHealth = maxHealth;
+    }
+
+    private void Update()
+    {
+      if (currentHealth <= 0)
+      {
+        Die();
+      }
+    }
+
+    public Vector2? Position()
+    {
+      if (currentHealth > 0)
+      {
+        return transform.position;
+      }
+      else
+      {
+        /*
+         * Because the position (0, 0) is always at the spawn of the dungeon, there will never be any enemy that could
+         * chase the player when in those coordinates.
+         */
+        return null;
+      }
+    }
+
+    public void Damage(int damage)
+    {
+      currentHealth -= damage;
+    }
+
+    public int MaxHealth()
+    {
+      return maxHealth;
+    }
+    
+    public int Health()
+    {
+      return currentHealth;
+    }
+
+    private void Die()
+    {
+      Debug.Log("Y O U D I E D ");
+    }
+  }
+}

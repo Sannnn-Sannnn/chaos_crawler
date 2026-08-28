@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 namespace Weapon
 {
@@ -15,8 +14,9 @@ namespace Weapon
 
     [Header("Stats")] [SerializeField] private int damage = 0;
     [SerializeField] private float cooldown = 0f;
+    [SerializeField] private float speed = 0f;
     private bool _isHolding = false;
-    private float _lastShotTime = 0f;
+    private float _lastShotTime = -1000f;
 
     private void OnEnable()
     {
@@ -61,12 +61,14 @@ namespace Weapon
       if (Time.time - _lastShotTime < cooldown) return;
       _lastShotTime = Time.time;
       var bulletInstance = Instantiate(bullet);
-      Bullet bulletComponent = bulletInstance.GetComponent<Bullet>();
-      bulletInstance.transform.position = transform.position;
+      IBullet bulletComponent = bulletInstance.GetComponent<IBullet>();
+      
+      bulletInstance.transform.position = transform.position + transform.right;
       bulletInstance.transform.rotation = transform.rotation;
       bulletComponent.SetDamage(damage);
       var direction = _mousePositionListener.GetAimDirection(transform.position);
       bulletComponent.SetDirection(direction);
+      bulletComponent.SetSpeed(speed);
     }
 
     private void Rotate()

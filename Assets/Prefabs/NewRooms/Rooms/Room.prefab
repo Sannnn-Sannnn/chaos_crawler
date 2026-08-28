@@ -5319,7 +5319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03494cb481684936888916d004cc41ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dungeon.DoorTrigger
-  wasCompleted: 0
+  activated: 0
 --- !u!114 &6624685961312273499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5333,9 +5333,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dungeon.EnemySpawner
   enemyPrefabs:
-  - {fileID: 908729971913051575, guid: e3af64830e93f49d7b23fc0bb3ba968b, type: 3}
+  - {fileID: 908729971913051575, guid: f7a3754a9786b04788b608ef872f57b3, type: 3}
   minEnemies: 4
-  maxEnemies: 8
+  maxEnemies: 10
   roomHeight: 10
   roomWidth: 10
   minDoorDistance: 5

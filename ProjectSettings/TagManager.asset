@@ -18,8 +18,8 @@ TagManager:
   - Player
   - Wall
   - Enemy
-  - Bullet
-  - 
+  - PlayerBullet
+  - EnemyBullet
   - 
   - 
   - 

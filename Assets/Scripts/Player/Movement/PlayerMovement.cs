@@ -6,13 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
   [SerializeField] private float speed = 5f;
   [SerializeField] private InputActionReference moveAction;
+  private bool _isAlive = true;
 
-  private Rigidbody2D rb;
-  private Vector2 movement;
+  private Rigidbody2D _rb;
+  private Vector2 _movement;
 
   private void Awake()
   {
-    rb = GetComponent<Rigidbody2D>();
+    _rb = GetComponent<Rigidbody2D>();
   }
 
   private void OnEnable()
@@ -27,13 +28,16 @@ public class PlayerMovement : MonoBehaviour
 
   private void Update()
   {
-    movement = moveAction.action.ReadValue<Vector2>();
-    movement = movement.normalized;
+    _movement = moveAction.action.ReadValue<Vector2>();
+    _movement = _movement.normalized;
   }
 
   private void FixedUpdate()
   {
-    rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+    if (_isAlive)
+    {
+      _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime); 
+    }
   }
   
   public void OnTriggerEnter2D(Collider2D other)
