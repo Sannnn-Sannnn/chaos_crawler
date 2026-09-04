@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1174674227119718699}
   - component: {fileID: 7261135397035116662}
   - component: {fileID: 2532136329275588665}
+  - component: {fileID: 6640428703452444780}
+  - component: {fileID: 559815428157311357}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -126,6 +128,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 15
   health: 10
+--- !u!114 &6640428703452444780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908729971913051575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c09bcb8a464fa2af2b083270f94033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy.Attack.MeleeEnemy
+  attackprefab: {fileID: 1392970841949781796, guid: dd6d7fd4ffe1a475ebf0fb3ccab0d1a6, type: 3}
+  damage: 2
+  cooldown: 2
+--- !u!114 &559815428157311357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908729971913051575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d6629dd2c54c5bafaa801a1d2cd134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDropBehaviour
+  drops:
+  - {fileID: 728474367380165066, guid: 9a0f688076804a8c899153c998a732cd, type: 3}
+  dropRates:
+  - 15
 --- !u!1 &4751976038673792392
 GameObject:
   m_ObjectHideFlags: 0

@@ -5334,6 +5334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dungeon.EnemySpawner
   enemyPrefabs:
   - {fileID: 908729971913051575, guid: f7a3754a9786b04788b608ef872f57b3, type: 3}
+  - {fileID: 908729971913051575, guid: e3af64830e93f49d7b23fc0bb3ba968b, type: 3}
   minEnemies: 4
   maxEnemies: 10
   roomHeight: 10

@@ -160,11 +160,8 @@ MonoBehaviour:
   drops:
   - {fileID: 728474367380165066, guid: 9a0f688076804a8c899153c998a732cd, type: 3}
   - {fileID: 6338750805600429112, guid: 521a5303239d4596cb7bf94b235ed8c7, type: 3}
-  - {fileID: 6800633244885317576, guid: 8770f00f99714f27e88b59fcfa5306b4, type: 3}
   dropRates:
   - 15
-  - 5
-  - 5
 --- !u!1 &4751976038673792392
 GameObject:
   m_ObjectHideFlags: 0
