@@ -11,6 +11,7 @@ namespace Enemy.Attack
     [SerializeField] private int damage;
     [SerializeField] private float fireRate;
     private float _lastAttack = 0;
+    [SerializeField] private float initialWait;
     [SerializeField] private float bulletSpeed;
 
     private PlayerHealth _playerHealth;
@@ -18,6 +19,7 @@ namespace Enemy.Attack
     private void Awake()
     {
       _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+      _lastAttack = Time.time + initialWait -  fireRate;
     }
 
     private void Update()

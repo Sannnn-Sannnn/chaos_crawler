@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7261135397035116662}
   - component: {fileID: 2532136329275588665}
   - component: {fileID: 7278203212946634689}
+  - component: {fileID: -101094339348404310}
   m_Layer: 8
   m_Name: ShooterEnemy
   m_TagString: Untagged
@@ -112,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20074b46d0e3479084de9d600405621d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy.SimpleChaserEnemyBehaviour
-  speed: -10
+  speed: -5
 --- !u!114 &2532136329275588665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +142,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy.Attack.ShooterEnemy
   projectilePrefab: {fileID: 1392970841949781796, guid: 708169ed13d349d2aa740c1d0342fa9e, type: 3}
   damage: 1
-  fireRate: 1
+  fireRate: 2
+  initialWait: 1
   bulletSpeed: 20
+--- !u!114 &-101094339348404310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908729971913051575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d6629dd2c54c5bafaa801a1d2cd134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDropBehaviour
+  drops:
+  - {fileID: 728474367380165066, guid: 9a0f688076804a8c899153c998a732cd, type: 3}
+  dropRates:
+  - 100
 --- !u!1 &4751976038673792392
 GameObject:
   m_ObjectHideFlags: 0

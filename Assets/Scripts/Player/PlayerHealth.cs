@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 
 namespace Player
@@ -50,6 +51,16 @@ namespace Player
     public int Health()
     {
       return currentHealth;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+      var lifeRestore = other.GetComponent<LifeRestorationConsumable>();
+      if (lifeRestore)
+      {
+        currentHealth = currentHealth + lifeRestore.HealthRestoration() > maxHealth ? maxHealth : currentHealth + lifeRestore.HealthRestoration();
+        Destroy(other.gameObject);
+      }
     }
 
     private void Die()

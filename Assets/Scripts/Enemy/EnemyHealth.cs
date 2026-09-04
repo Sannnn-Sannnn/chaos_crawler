@@ -6,11 +6,13 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] private int maxHealth;
     [SerializeField] private int health;
+    private EnemyDropBehaviour _dropper;
     private EnemySpawner _spawner;
     
     void Awake()
     {
         health = maxHealth;
+        _dropper = GetComponent<EnemyDropBehaviour>();
     }
     
     void Update()
@@ -34,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         _spawner.Down();
+        _dropper.Drop();
         Destroy(gameObject);
     }
     
