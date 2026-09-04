@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2607378995903865904}
   - component: {fileID: 2191271045463708832}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5755821200421346891}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Orange Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
