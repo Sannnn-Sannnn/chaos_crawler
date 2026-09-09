@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7430549204449012234}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5604744027641510816}
   - component: {fileID: 2230574033205272978}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 4003773876626773010}
   - component: {fileID: 82364171626417282}
   - component: {fileID: 7944138911367549605}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Pink Firework
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1935579058962193708}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5819676014686496198}
   - component: {fileID: 5721549983199735173}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 4249049911732220088}
   - component: {fileID: 1203221735702576242}
   - component: {fileID: 1077325727847577008}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Blue Handgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

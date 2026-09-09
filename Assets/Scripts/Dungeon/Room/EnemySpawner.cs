@@ -38,7 +38,8 @@ namespace Dungeon
       for (int i = 0; i < _enemyAmount; i++)
       {
         var spawnPosition = GetRandomPosition();
-        var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        var enemyVariant = Random.Range(0, enemyPrefabs.Length);
+        var enemyPrefab = enemyPrefabs[enemyVariant];
         var enemyInstance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         var enemyHealth = enemyInstance.GetComponent<EnemyHealth>();
         enemyHealth.SetSpawner(this);

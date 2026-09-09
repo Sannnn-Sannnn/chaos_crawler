@@ -3,11 +3,12 @@ using UnityEngine;
 
 namespace Weapon
 {
-  public class EnemyAttack : MonoBehaviour, IBullet
+  public class EnemyBullet : MonoBehaviour
   {
     private Vector2 _direction = Vector2.zero;
     [SerializeField] private float lifetime = 5f;
     [SerializeField] private bool canPierce = false;
+    [SerializeField] private float afterLifeTime = 1f;
     private float _speed = 1f;
     private float _birthTime;
     private int _damage = 0;
@@ -26,6 +27,7 @@ namespace Weapon
       {
         Destroy(gameObject);
       }
+
       Vector2 newPosition = _rb.position + _direction * _speed * Time.deltaTime;
       _rb.MovePosition(newPosition);
     }
@@ -33,6 +35,11 @@ namespace Weapon
     public void SetDirection(Vector3 direction)
     {
       _direction = direction;
+    }
+
+    public void SetRotation(Quaternion rotation)
+    {
+      transform.rotation = rotation;
     }
 
     public void SetDamage(int damage)
@@ -56,12 +63,9 @@ namespace Weapon
       if (player != null)
       {
         player.Damage(_damage);
-        if (!canPierce) Destroy(gameObject);
       }
-      else
-      {
-        Destroy(gameObject); 
-      }
+
+      Destroy(gameObject);
     }
   }
 }

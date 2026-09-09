@@ -1,4 +1,5 @@
 using System;
+using Player;
 using UnityEngine;
 
 namespace Dungeon
@@ -19,7 +20,7 @@ namespace Dungeon
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-      var player = other.gameObject.GetComponent<PlayerMovement>();
+      var player = other.gameObject.GetComponent<PlayerHealth>();
       if (player == null) return;
 
       if (!activated)

@@ -18,7 +18,7 @@ namespace Enemy.Attack
 
     private void Awake()
     {
-      _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+      _playerHealth = GameObject.FindGameObjectWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
       _lastAttack = Time.time + initialWait -  fireRate;
     }
 
@@ -42,13 +42,13 @@ namespace Enemy.Attack
         bulletInstance.transform.position = transform.position;
 
         var direction = ((Vector2)playerPos - (Vector2)transform.position).normalized;
-        bulletInstance.transform.rotation = Quaternion.Euler(0f, 0f,
-          Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+        var rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
 
-        var bulletComponent = bulletInstance.GetComponent<EnemyAttack>();
+        var bulletComponent = bulletInstance.GetComponent<EnemyBullet>();
         bulletComponent.SetSpeed(bulletSpeed);
         bulletComponent.SetDamage(damage);
         bulletComponent.SetDirection(direction);
+        bulletComponent.SetRotation(rotation);
       }
     }
   }

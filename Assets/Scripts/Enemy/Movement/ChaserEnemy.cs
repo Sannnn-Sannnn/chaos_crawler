@@ -13,7 +13,7 @@ namespace Enemy
 
     private void Awake()
     {
-      _player = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+      _player = GameObject.FindWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
       _rb = GetComponent<Rigidbody2D>();
     }
 

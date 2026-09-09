@@ -1,3 +1,4 @@
+using System;
 using Dungeon;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            Die();
+            Destroy(gameObject);
         }
     }
 
@@ -31,6 +32,11 @@ public class EnemyHealth : MonoBehaviour
     public void Damage(int damage)
     {
         health -= damage;
+    }
+
+    private void OnDestroy()
+    {
+        Die();
     }
 
     private void Die()

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6562435784284243756}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8517767568897342509}
   - component: {fileID: -4784202450533457068}
   - component: {fileID: 8293769214566359914}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Lime SMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4632637833878944916}
   - component: {fileID: 6182062936774071906}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

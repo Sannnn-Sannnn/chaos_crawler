@@ -51,10 +51,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -157,8 +157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDropBehaviour
   drops:
   - {fileID: 728474367380165066, guid: 9a0f688076804a8c899153c998a732cd, type: 3}
+  - {fileID: 2813500350702405318, guid: f1142c68be2b0e15caa86498e3582d7d, type: 3}
   dropRates:
   - 15
+  - 5
 --- !u!1 &4751976038673792392
 GameObject:
   m_ObjectHideFlags: 0

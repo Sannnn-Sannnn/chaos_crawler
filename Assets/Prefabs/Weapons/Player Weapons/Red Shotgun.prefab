@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5114259025212690409}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4322378405516939566}
   - component: {fileID: 4685384279193877605}
   - component: {fileID: 6684176298687941449}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Red Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8849987162209688123}
   - component: {fileID: 389322603707482546}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

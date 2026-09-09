@@ -13,7 +13,7 @@ public class InfoDisplay : MonoBehaviour
     
     void Awake()
     {
-        _playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        _playerHealth = GameObject.FindWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
         _dungeonGenerator = GameObject.FindWithTag("DungeonGenerator").GetComponent<DungeonGenerator>();
         _playerMaxHealth = _playerHealth.MaxHealth();
     }

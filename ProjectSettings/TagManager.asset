@@ -9,11 +9,12 @@ TagManager:
   - MouseListener
   - PlayerAttack
   - LifeRecovery
+  - PlayerHitBox
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - WeaponController
   - Water
   - UI
   - Player
@@ -22,10 +23,10 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - Consumable
-  - 
-  - 
-  - 
-  - 
+  - PlayerWeapon
+  - EnemySpawner
+  - Flag
+  - PlayerDamageHitbox
   - 
   - 
   - 
