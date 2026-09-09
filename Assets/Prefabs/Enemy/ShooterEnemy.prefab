@@ -163,7 +163,6 @@ MonoBehaviour:
   dropRates:
   - 15
   - 5
-  - 5
 --- !u!1 &4751976038673792392
 GameObject:
   m_ObjectHideFlags: 0

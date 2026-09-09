@@ -1,0 +1,12 @@
+Main changes
+* Add multiple weapon slots
+
+Fixes:
+* Fix weapon re-picking
+* Fix weapon tilting
+* Add death screen with reload
+* Add transitions between floors
+
+Quick changes
+* Lower hearts spawn rate
+* Add more weapon drops
