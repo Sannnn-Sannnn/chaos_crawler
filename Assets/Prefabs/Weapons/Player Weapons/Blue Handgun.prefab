@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 1077325727847577008}
   m_Layer: 12
   m_Name: Blue Handgun
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,9 +172,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
   firePoint: {fileID: 1935579058962193708}
   bulletPrefab: {fileID: 5688210247292529260, guid: d4421e2d93f524847b06d9616602c781, type: 3}
-  damage: 20
+  damage: 5
   cooldown: 0.5
   speed: 20
+  deviation: 5
 --- !u!61 &1077325727847577008
 BoxCollider2D:
   m_ObjectHideFlags: 0

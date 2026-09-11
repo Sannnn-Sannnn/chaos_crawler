@@ -1,12 +1,11 @@
-Main changes
+Main changes:
 * Add multiple weapon slots
+* Implement cannon
 
-Fixes:
-* Fix weapon re-picking
+Other changes:
 * Fix weapon tilting
 * Add death screen with reload
 * Add transitions between floors
+* Add weapon highlight when selectable
 
-Quick changes
-* Lower hearts spawn rate
-* Add more weapon drops
+Quick changes:

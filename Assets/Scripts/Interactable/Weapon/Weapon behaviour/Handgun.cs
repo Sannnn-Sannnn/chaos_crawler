@@ -11,6 +11,7 @@ namespace Weapon
     [SerializeField] private int damage = 10;
     [SerializeField] private float cooldown = 0.2f;
     [SerializeField] private float speed = 15f;
+    [SerializeField] private float deviation = 0f;
 
     public override void Shoot(Vector2 aimDirection)
     {
@@ -28,8 +29,12 @@ namespace Weapon
       if (bulletInstance.TryGetComponent<IBullet>(out var bulletComponent))
       {
         bulletComponent.SetDamage(damage);
-        bulletComponent.SetDirection(aimDirection);
         bulletComponent.SetSpeed(speed);
+        
+        float randomAngle = Random.Range(-deviation, deviation);
+        Quaternion randomDeviation = Quaternion.Euler(0f, 0f, randomAngle);
+        
+        bulletComponent.SetDirection((randomDeviation * aimDirection).normalized);
       }
     }
   }

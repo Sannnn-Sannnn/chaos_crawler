@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7915031224352532929}
   m_Layer: 12
   m_Name: Cyan NRG
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,9 +80,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
   firePoint: {fileID: 7384973120976656323}
   bulletPrefab: {fileID: 5688210247292529260, guid: fe0d1018feda9c053a5e9f4f2a702a84, type: 3}
-  damage: 10
-  cooldown: 0.2
-  speed: 20
+  damage: 20
+  cooldown: 0.1
+  speed: 10
+  deviation: 5
 --- !u!61 &7915031224352532929
 BoxCollider2D:
   m_ObjectHideFlags: 0

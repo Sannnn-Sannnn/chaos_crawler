@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 908729971913051575}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.69939, y: 0.937, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14894d35f4cb0b0e2bca298d56f72e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 15
+  maxHealth: 10
   health: 10
 --- !u!114 &6640428703452444780
 MonoBehaviour:
@@ -157,9 +157,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDropBehaviour
   drops:
   - {fileID: 728474367380165066, guid: 9a0f688076804a8c899153c998a732cd, type: 3}
+  - {fileID: 8275333076120618426, guid: b8cb3f057cfbbbe8d8a74c703c6d6009, type: 3}
+  - {fileID: 7219816508551703406, guid: b57e2de5212dacb8cab5edcfdd12e8d8, type: 3}
   - {fileID: 2813500350702405318, guid: f1142c68be2b0e15caa86498e3582d7d, type: 3}
+  - {fileID: 6800633244885317576, guid: 8770f00f99714f27e88b59fcfa5306b4, type: 3}
+  - {fileID: 4090426380342716300, guid: ca1c3f7fc140ded2d965b05d054ba108, type: 3}
+  - {fileID: 6338750805600429112, guid: 521a5303239d4596cb7bf94b235ed8c7, type: 3}
   dropRates:
-  - 15
+  - 10
+  - 5
+  - 2
+  - 5
+  - 2
+  - 2
   - 5
 --- !u!1 &4751976038673792392
 GameObject:

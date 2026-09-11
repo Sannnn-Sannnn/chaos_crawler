@@ -10,6 +10,8 @@ TagManager:
   - PlayerAttack
   - LifeRecovery
   - PlayerHitBox
+  - PlayerWeapon
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

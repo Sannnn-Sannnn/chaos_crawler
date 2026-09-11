@@ -50,7 +50,7 @@ MonoBehaviour:
   lifetime: 3
   pierceCount: 1
   spark: {fileID: 5688210247292529260, guid: 210d9981282dfc88c9c3228bd3838eeb, type: 3}
-  sparkDamage: 5
+  sparkDamage: 1
   sparkCount: 50
   sparkLifetime: 2
   sparkLifetimeDeviation: 2

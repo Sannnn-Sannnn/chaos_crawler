@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6684176298687941449}
   m_Layer: 12
   m_Name: Red Shotgun
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

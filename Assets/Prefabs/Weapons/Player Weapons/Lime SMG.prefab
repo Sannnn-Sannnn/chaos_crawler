@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 8293769214566359914}
   m_Layer: 12
   m_Name: Lime SMG
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +83,7 @@ MonoBehaviour:
   damage: 5
   cooldown: 0.1
   speed: 20
+  deviation: 15
 --- !u!61 &8293769214566359914
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using Weapon;
 using Random = UnityEngine.Random;
 
 namespace Dungeon
@@ -109,12 +110,16 @@ namespace Dungeon
 
     public void RegenerateDungeon()
     {
-      
-      LifeRestorationConsumable[] hearts = FindObjectsByType<LifeRestorationConsumable>();
-      foreach (LifeRestorationConsumable heart in hearts)
+      GameObject[] playerWeapons = GameObject.FindGameObjectsWithTag("PlayerWeapon");
+      foreach (GameObject weapon in playerWeapons)
       {
-        Destroy(heart.gameObject);
+        var weaponComponent = weapon.GetComponent<WeaponBase>();
+        if (!weaponComponent.IsEquipped) Destroy(weapon);
       }
+      
+      DestroyAll(GameObject.FindGameObjectsWithTag("PlayerAttack"));
+      DestroyAll(GameObject.FindGameObjectsWithTag("EnemyBullet"));
+      DestroyAll(GameObject.FindGameObjectsWithTag("LifeRecovery"));
       
       foreach (Vector2Int room in _rooms.Keys)
       {
@@ -130,6 +135,14 @@ namespace Dungeon
       _currentFloor++;
     }
 
+    private void DestroyAll(GameObject[] gos)
+    {
+      foreach (GameObject go in gos)
+      {
+        Destroy(go);
+      }
+    }
+    
     public void ToggleAllDoors()
     {
       foreach (Vector2Int room in _rooms.Keys)
