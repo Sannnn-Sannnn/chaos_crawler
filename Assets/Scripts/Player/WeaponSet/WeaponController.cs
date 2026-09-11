@@ -1,158 +1,202 @@
-using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapon;
 
-namespace Weapon
+public class WeaponController : MonoBehaviour
 {
-    public class WeaponController : MonoBehaviour
+    [Header("Inputs & Listeners")] [SerializeField]
+    private InputActionReference mouseClickListener;
+
+    [SerializeField] private MouseListener mouseListener;
+
+    [SerializeField] private int currentWeaponSlot = 0;
+
+    [Header("Hold Points")] [SerializeField]
+    private Transform[] weaponSlots;
+
+    [Header("Weapon Slots")] [SerializeField]
+    private WeaponBase[] equipedWeapons;
+
+    [Header("Weapon Slots (UI)")] [SerializeField]
+    private WeaponSlot[] uiWeaponSlots;
+
+    private IInteractable _currentInteractable;
+    private bool _isHoldingClick = false;
+
+    private void Awake()
     {
-        [Header("Inputs & Listeners")]
-        [SerializeField] private InputActionReference mouseClickListener;
-        [SerializeField] private MouseListener mousePositionListener;
-
-        [Header("Punto de Anclaje")]
-        [SerializeField] private Transform weaponHoldPoint;
-
-        [Header("Arma Actual")]
-        [SerializeField] private WeaponBase currentWeapon;
-        
-        [Header("Drop Settings")]
-        [SerializeField] private float dropForceMagnitude = 4f;
-
-        private IInteractable _currentInteractable;
-        private bool _isHoldingClick = false;
-
-        private void Awake()
+        if (mouseListener == null)
         {
-            // Fallback por si no se asigna en el Inspector
-            if (mousePositionListener == null)
+            var listenerObject = GameObject.FindGameObjectWithTag("MouseListener");
+            if (listenerObject != null)
             {
-                var listenerObject = GameObject.FindGameObjectWithTag("MouseListener");
-                if (listenerObject != null)
+                mouseListener = listenerObject.GetComponent<MouseListener>();
+            }
+        }
+    }
+
+    private void Start()
+    {
+        if (equipedWeapons == null || weaponSlots == null) return;
+
+        int count = Mathf.Min(equipedWeapons.Length, weaponSlots.Length);
+        for (int i = 0; i < count; i++)
+        {
+            if (equipedWeapons[i] != null && weaponSlots[i] != null)
+            {
+                equipedWeapons[i].SetEquipped(weaponSlots[i]);
+                uiWeaponSlots[currentWeaponSlot].SetWeaponSprite(weaponSlots[i].GetComponentInChildren<SpriteRenderer>().sprite);
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (mouseClickListener != null)
+        {
+            mouseClickListener.action.Enable();
+            mouseClickListener.action.started += OnActionStarted;
+            mouseClickListener.action.canceled += OnActionCanceled;
+        }
+
+        if (mouseListener != null)
+        {
+            mouseListener.OnWheelScroll += HandleWeaponChange;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (mouseClickListener != null)
+        {
+            mouseClickListener.action.Disable();
+            mouseClickListener.action.started -= OnActionStarted;
+            mouseClickListener.action.canceled -= OnActionCanceled;
+        }
+
+        if (mouseListener != null)
+        {
+            mouseListener.OnWheelScroll -= HandleWeaponChange;
+        }
+    }
+
+    private void Update()
+    {
+        RotateAndAim();
+
+        if (_isHoldingClick)
+        {
+            ShootAllWeapons();
+        }
+    }
+
+    private void RotateAndAim()
+    {
+        if (mouseListener == null) return;
+
+        if (weaponSlots != null)
+        {
+            for (int i = 0; i < weaponSlots.Length; i++)
+            {
+                if (weaponSlots[i] == null) continue;
+
+                Vector2 aimDir = mouseListener.GetAimDirection(weaponSlots[i].position);
+                float slotAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+                weaponSlots[i].rotation = Quaternion.Euler(0f, 0f, slotAngle);
+
+                if (equipedWeapons != null && i < equipedWeapons.Length && equipedWeapons[i] != null)
                 {
-                    mousePositionListener = listenerObject.GetComponent<MouseListener>();
+                    equipedWeapons[i].FlipSpriteY(aimDir.x < 0);
                 }
             }
         }
 
-        private void Start()
+        Vector2 selfDir = mouseListener.GetAimDirection(transform.position);
+        float selfAngle = Mathf.Atan2(selfDir.y, selfDir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, selfAngle);
+    }
+
+    private void ShootAllWeapons()
+    {
+        if (equipedWeapons == null || mouseListener == null) return;
+
+        for (int i = 0; i < equipedWeapons.Length; i++)
         {
-            // Si el jugador arranca con un arma preasignada, inicializarla en el holdPoint
-            if (currentWeapon != null)
-            {
-                currentWeapon.SetEquipped(weaponHoldPoint);
-            }
+            if (equipedWeapons[i] == null) continue;
+
+            Transform slot = (weaponSlots != null && i < weaponSlots.Length) ? weaponSlots[i] : transform;
+            Vector2 aimDir = slot != null ? mouseListener.GetAimDirection(slot.position) : (Vector2)transform.right;
+
+            equipedWeapons[i].Shoot(aimDir);
+        }
+    }
+
+    private void OnActionStarted(InputAction.CallbackContext context)
+    {
+        if (_currentInteractable != null)
+        {
+            _currentInteractable.Interact(this);
+            return;
         }
 
-        private void OnEnable()
+        _isHoldingClick = true;
+        ShootAllWeapons();
+    }
+
+    private void OnActionCanceled(InputAction.CallbackContext context)
+    {
+        _isHoldingClick = false;
+    }
+
+    private void HandleWeaponChange(int movement)
+    {
+        if (equipedWeapons == null || equipedWeapons.Length == 0) return;
+
+        int totalSlots = equipedWeapons.Length;
+        currentWeaponSlot = (currentWeaponSlot + movement) % totalSlots;
+        if (currentWeaponSlot < 0) currentWeaponSlot += totalSlots;
+    }
+
+    public void EquipWeapon(WeaponBase newWeapon)
+    {
+        if (newWeapon == null || equipedWeapons == null || equipedWeapons.Length == 0) return;
+
+        if (currentWeaponSlot < 0 || currentWeaponSlot >= equipedWeapons.Length)
         {
-            if (mouseClickListener != null)
-            {
-                mouseClickListener.action.Enable();
-                mouseClickListener.action.started += OnActionStarted;
-                mouseClickListener.action.canceled += OnActionCanceled;
-            }
+            currentWeaponSlot = 0;
         }
 
-        private void OnDisable()
+        Transform targetSlot = (weaponSlots != null && currentWeaponSlot < weaponSlots.Length)
+            ? weaponSlots[currentWeaponSlot]
+            : transform;
+
+        if (equipedWeapons[currentWeaponSlot] != null)
         {
-            if (mouseClickListener != null)
-            {
-                mouseClickListener.action.started -= OnActionStarted;
-                mouseClickListener.action.canceled -= OnActionCanceled;
-                mouseClickListener.action.Disable();
-            }
+            equipedWeapons[currentWeaponSlot].SetDropped();
         }
 
-        private void Update()
-        {
-            RotateAndAim();
-
-            // Disparo continuo/automático mientras se mantenga presionado
-            if (_isHoldingClick && currentWeapon != null)
-            {
-                Vector2 aimDirection = mousePositionListener != null 
-                    ? mousePositionListener.GetAimDirection(weaponHoldPoint.position) 
-                    : (Vector2)weaponHoldPoint.right;
-
-                currentWeapon.Shoot(aimDirection);
-            }
-        }
-
-        private void RotateAndAim()
-        {
-            if (mousePositionListener == null || weaponHoldPoint == null) return;
-
-            // 1. Obtener dirección hacia el mouse
-            Vector2 mouseDirection = mousePositionListener.GetAimDirection(weaponHoldPoint.position);
-
-            // 2. Rotar el WeaponHoldPoint en el eje Z
-            float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
-            weaponHoldPoint.rotation = Quaternion.Euler(0f, 0f, angle);
-
-            // 3. Invertir visualmente el sprite del arma si apunta a la izquierda
-            if (currentWeapon != null)
-            {
-                currentWeapon.FlipSpriteY(mouseDirection.x < 0);
-            }
-        }
-
-        private void OnActionStarted(InputAction.CallbackContext context)
-        {
-            // PRIORIDAD 1: Si hay un arma/objeto en el suelo, interactuar
-            if (_currentInteractable != null)
-            {
-                _currentInteractable.Interact(this);
-                return;
-            }
-
-            // PRIORIDAD 2: Disparar arma equipada
-            _isHoldingClick = true;
-            if (currentWeapon != null && mousePositionListener != null)
-            {
-                Vector2 aimDirection = mousePositionListener.GetAimDirection(weaponHoldPoint.position);
-                currentWeapon.Shoot(aimDirection);
-            }
-        }
-
-        private void OnActionCanceled(InputAction.CallbackContext context)
-        {
-            _isHoldingClick = false;
-        }
-
-        // --- GESTIÓN DE EQUIPAMIENTO ---
-        public void EquipWeapon(WeaponBase newWeapon)
-        {
-            if (newWeapon == null) return;
-
-            if (currentWeapon != null)
-            {
-                Vector2 dropDirection = weaponHoldPoint != null ? (Vector2)weaponHoldPoint.right : Vector2.right;
-                currentWeapon.SetDropped(dropDirection * dropForceMagnitude);
-            }
-
-            currentWeapon = newWeapon;
-            currentWeapon.SetEquipped(weaponHoldPoint);
-            _currentInteractable = null;
-        }
+        equipedWeapons[currentWeaponSlot] = newWeapon;
+        equipedWeapons[currentWeaponSlot].SetEquipped(targetSlot);
+        _currentInteractable = null;
         
-        // --- DETECCIÓN DE INTERACTUABLES EN EL SUELO (2D Triggers) ---
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.TryGetComponent<IInteractable>(out var interactable))
-            {
-                _currentInteractable = interactable;
-            }
-        }
+        uiWeaponSlots[currentWeaponSlot].SetWeaponSprite(newWeapon.GetComponentInChildren<SpriteRenderer>().sprite);
+    }
 
-        private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<IInteractable>(out var interactable))
         {
-            if (other.TryGetComponent<IInteractable>(out var interactable))
+            _currentInteractable = interactable;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent<IInteractable>(out var interactable))
+        {
+            if (_currentInteractable == interactable)
             {
-                if (_currentInteractable == interactable)
-                {
-                    _currentInteractable = null;
-                }
+                _currentInteractable = null;
             }
         }
     }

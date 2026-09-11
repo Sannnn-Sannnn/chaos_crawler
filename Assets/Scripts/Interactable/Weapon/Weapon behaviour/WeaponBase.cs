@@ -43,16 +43,11 @@ namespace Weapon
       transform.localRotation = Quaternion.identity;
     }
 
-    public virtual void SetDropped(Vector2 dropForce)
+    public virtual void SetDropped()
     {
       IsEquipped = false;
       transform.SetParent(null);
       PickupCollider.enabled = true;
-
-      if (TryGetComponent<Rigidbody2D>(out var rb))
-      {
-        rb.linearVelocity = dropForce;
-      }
     }
 
     public virtual void FlipSpriteY(bool flip)
