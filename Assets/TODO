@@ -1,11 +1,14 @@
 Main changes:
-* Add multiple weapon slots
 * Implement cannon
 
 Other changes:
 * Fix weapon tilting
 * Add death screen with reload
 * Add transitions between floors
-* Add weapon highlight when selectable
 
 Quick changes:
+
+
+Done:
+* Add weapon highlight when selectable
+* Add multiple weapon slots
