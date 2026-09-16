@@ -1,12 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponSlot : MonoBehaviour
 {
-  [SerializeField] private SpriteRenderer weaponSprite;
-
+  [SerializeField] private Image weaponSprite;
+  [SerializeField] private Image outerRing;
+  
   private void Awake()
   {
-    if (weaponSprite == null) return;
   }
 
   public void SetWeaponSprite(Sprite sprite)
@@ -20,6 +21,11 @@ public class WeaponSlot : MonoBehaviour
       weaponSprite.sprite = sprite;
       weaponSprite.enabled = true;
     }
+  }
+  
+  public void SetColour(Color newColour)
+  {
+    outerRing.color = newColour;
   }
 
 }

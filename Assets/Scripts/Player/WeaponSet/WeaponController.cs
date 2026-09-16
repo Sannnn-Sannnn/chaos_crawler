@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Weapon;
 
 public class WeaponController : MonoBehaviour
 {
+
+    [SerializeField] private WeaponRenderer weaponRenderer;
+    
     [Header("Inputs & Listeners")] [SerializeField]
     private InputActionReference mouseClickListener;
 
@@ -16,9 +20,6 @@ public class WeaponController : MonoBehaviour
 
     [Header("Weapon Slots")] [SerializeField]
     private WeaponBase[] equipedWeapons;
-
-    [Header("Weapon Slots (UI)")] [SerializeField]
-    private WeaponSlot[] uiWeaponSlots;
 
     private IInteractable _currentInteractable;
     private bool _isHoldingClick = false;
@@ -44,8 +45,9 @@ public class WeaponController : MonoBehaviour
         {
             if (equipedWeapons[i] != null && weaponSlots[i] != null)
             {
+                var weapon = equipedWeapons[i];
                 equipedWeapons[i].SetEquipped(weaponSlots[i]);
-                uiWeaponSlots[currentWeaponSlot].SetWeaponSprite(weaponSlots[i].GetComponentInChildren<SpriteRenderer>().sprite);
+                weaponRenderer.RenderWeapon(i, weapon.GetComponentInChildren<SpriteRenderer>().sprite);
             }
         }
     }
@@ -152,9 +154,13 @@ public class WeaponController : MonoBehaviour
     {
         if (equipedWeapons == null || equipedWeapons.Length == 0) return;
 
+        weaponRenderer.SetSelected(currentWeaponSlot, false);
+        
         int totalSlots = equipedWeapons.Length;
         currentWeaponSlot = (currentWeaponSlot + movement) % totalSlots;
         if (currentWeaponSlot < 0) currentWeaponSlot += totalSlots;
+        
+        weaponRenderer.SetSelected(currentWeaponSlot, true);
     }
 
     public void EquipWeapon(WeaponBase newWeapon)
@@ -178,8 +184,8 @@ public class WeaponController : MonoBehaviour
         equipedWeapons[currentWeaponSlot] = newWeapon;
         equipedWeapons[currentWeaponSlot].SetEquipped(targetSlot);
         _currentInteractable = null;
-        
-        uiWeaponSlots[currentWeaponSlot].SetWeaponSprite(newWeapon.GetComponentInChildren<SpriteRenderer>().sprite);
+
+        weaponRenderer.RenderWeapon(currentWeaponSlot, newWeapon.GetComponentInChildren<SpriteRenderer>().sprite);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
