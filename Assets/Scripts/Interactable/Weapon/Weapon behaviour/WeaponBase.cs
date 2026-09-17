@@ -8,11 +8,16 @@ namespace Weapon
     [Header("Weapon Base Setup")]
     [SerializeField] protected Transform firePoint;
 
+    [SerializeField] protected int usagesLeft;
+
     protected Collider2D PickupCollider;
     protected SpriteRenderer WeaponSprite;
     protected float LastShotTime = -1000f;
 
     public bool IsEquipped { get; protected set; }
+    
+    public Sprite GetSprite() => WeaponSprite.sprite;
+    public int GetUsagesLeft() => usagesLeft;
 
     protected virtual void Awake()
     {
@@ -31,6 +36,12 @@ namespace Weapon
 
     // Cada arma implementa su propia forma de disparar
     public abstract void Shoot(Vector2 aimDirection);
+
+    public void Use()
+    {
+      usagesLeft--;
+      if (usagesLeft == 0) Destroy(gameObject);
+    }
 
     // --- ESTADOS: EQUIPADA / EN SUELO ---
     public virtual void SetEquipped(Transform parentHoldPoint)

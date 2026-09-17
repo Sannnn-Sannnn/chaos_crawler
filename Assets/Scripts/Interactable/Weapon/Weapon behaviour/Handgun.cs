@@ -36,6 +36,7 @@ namespace Weapon
         
         bulletComponent.SetDirection((randomDeviation * aimDirection).normalized);
       }
+      Use();
     }
   }
 }

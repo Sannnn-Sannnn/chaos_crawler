@@ -43,11 +43,15 @@ public class WeaponController : MonoBehaviour
         int count = Mathf.Min(equipedWeapons.Length, weaponSlots.Length);
         for (int i = 0; i < count; i++)
         {
-            if (equipedWeapons[i] != null && weaponSlots[i] != null)
+            var weapon = equipedWeapons[i];
+            if (weapon != null && weaponSlots[i] != null)
             {
-                var weapon = equipedWeapons[i];
                 equipedWeapons[i].SetEquipped(weaponSlots[i]);
-                weaponRenderer.RenderWeapon(i, weapon.GetComponentInChildren<SpriteRenderer>().sprite);
+                weaponRenderer.RenderWeapon(i, weapon);
+            }
+            else
+            {
+                weaponRenderer.RenderWeapon(i, null);
             }
         }
     }
@@ -185,7 +189,7 @@ public class WeaponController : MonoBehaviour
         equipedWeapons[currentWeaponSlot].SetEquipped(targetSlot);
         _currentInteractable = null;
 
-        weaponRenderer.RenderWeapon(currentWeaponSlot, newWeapon.GetComponentInChildren<SpriteRenderer>().sprite);
+        weaponRenderer.RenderWeapon(currentWeaponSlot, newWeapon);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -154,8 +154,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 28
-      y: 4
+      x: 4
+      y: 93
       width: 16
       height: 12
     spriteID: 8ac0167a86a10aaa395d0a56dfa34734
@@ -166,7 +166,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 28, y: 4}
+    uvTransform: {x: 4, y: 93}
   - name: Frame_2
     originalName: 
     pivot: {x: 1, y: -0.16666667}
@@ -197,7 +197,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 28
-      y: 24
+      y: 4
       width: 16
       height: 12
     spriteID: 2d2a530d4b67134a3b40b09f4f5f53d4
@@ -208,7 +208,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 28, y: 24}
+    uvTransform: {x: 28, y: 4}
   - name: Frame_4
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -220,7 +220,7 @@ ScriptedImporter:
       x: 4
       y: 28
       width: 16
-      height: 16
+      height: 15
     spriteID: 2bdeb603dd9b0cf1a8c0b4eb2e4d33c5
     spriteBone: []
     spriteOutline: []
@@ -239,7 +239,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 52
+      y: 51
       width: 16
       height: 13
     spriteID: ba4aa533c4dfe4923bb878fc562c1dd0
@@ -250,7 +250,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 52}
+    uvTransform: {x: 4, y: 51}
   - name: Frame_6
     originalName: 
     pivot: {x: 0.5, y: -0.07692308}
@@ -260,7 +260,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 73
+      y: 72
       width: 16
       height: 13
     spriteID: 880484be03462b5b6abbb964a7b9ad5c
@@ -271,7 +271,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 73}
+    uvTransform: {x: 4, y: 72}
   - name: Frame_7
     originalName: 
     pivot: {x: 0.5, y: -0.27272728}
@@ -280,8 +280,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 28
-      y: 44
+      x: 4
+      y: 113
       width: 16
       height: 11
     spriteID: 94fcf3c6a15ba8a46a57351ddf52340c
@@ -292,19 +292,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 28, y: 44}
+    uvTransform: {x: 4, y: 113}
   - name: Frame_8
     originalName: 
-    pivot: {x: 0.5, y: -0.15384616}
+    pivot: {x: 0.5, y: -0.16666667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 94
+      x: 28
+      y: 24
       width: 16
-      height: 13
+      height: 12
     spriteID: 441019c767a0f0f99a83398dfbf40aef
     spriteBone: []
     spriteOutline: []
@@ -313,7 +313,28 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 94}
+    uvTransform: {x: 28, y: 24}
+  - name: Frame_9
+    originalName: 
+    pivot: {x: 0.5, y: -0.16666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 28
+      y: 44
+      width: 16
+      height: 12
+    spriteID: f2fd29e8b5f03c73dbd5e62bd0e2998b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 28, y: 44}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
@@ -372,7 +393,7 @@ ScriptedImporter:
         x: 0
         y: 0
         width: 16
-        height: 16
+        height: 15
       spriteId: 2bdeb603dd9b0cf1a8c0b4eb2e4d33c5
     - name: Frame_5
       frameIndex: 5
@@ -408,8 +429,17 @@ ScriptedImporter:
         x: 0
         y: 2
         width: 16
-        height: 13
+        height: 12
       spriteId: 441019c767a0f0f99a83398dfbf40aef
+    - name: Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 2
+        width: 16
+        height: 12
+      spriteId: f2fd29e8b5f03c73dbd5e62bd0e2998b
     linkedCells: []
     tileCells: []
     tileSetIndex: 0

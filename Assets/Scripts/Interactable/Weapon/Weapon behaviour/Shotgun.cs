@@ -41,6 +41,7 @@ namespace Weapon
           bulletComponent.SetSpeed(randomizedSpeed);
         }
       }
+      Use();
     }
   }
 }

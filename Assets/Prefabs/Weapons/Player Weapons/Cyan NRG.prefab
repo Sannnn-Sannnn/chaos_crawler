@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
   firePoint: {fileID: 7384973120976656323}
+  usagesLeft: 20
   bulletPrefab: {fileID: 5688210247292529260, guid: fe0d1018feda9c053a5e9f4f2a702a84, type: 3}
   damage: 20
   cooldown: 0.1
@@ -128,7 +129,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 0.75}
+  m_Size: {x: 1.2, y: 0.6}
   m_EdgeRadius: 0
 --- !u!1 &8192075013702993463
 GameObject:

@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon.Shotgun
   firePoint: {fileID: 5415751861158888802}
+  usagesLeft: 10
   bulletPrefab: {fileID: 5688210247292529260, guid: 31f5d69ca9f414521b80bbac8634e01d, type: 3}
   damage: 5
   cooldown: 1.5
