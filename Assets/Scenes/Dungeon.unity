@@ -762,15 +762,16 @@ MonoBehaviour:
   initialProbability: 0.5
   minProbability: 0.05
   probabilityDecrement: 0
-  gridScale: 22
+  gridScale: 27
   roomPrefabs:
-  - {fileID: 6525627106680853277, guid: 1e52faa58930fcd33b5bce6ec8961a16, type: 3}
-  - {fileID: 6525627106680853277, guid: 24d67173a9baa62e58c44d044560d518, type: 3}
+  - {fileID: 6525627106680853277, guid: 1aca9bfa830f05c94b259d98f9dcb876, type: 3}
+  - {fileID: 6525627106680853277, guid: a1da3c388243f73efa6aaac03c3249a3, type: 3}
   - {fileID: 6525627106680853277, guid: 5346e07d9647194f1b92cfab715221a3, type: 3}
-  - {fileID: 6525627106680853277, guid: c6e01389f0d6865b58ddfb5beb151d83, type: 3}
-  - {fileID: 6525627106680853277, guid: 1ef91df35602391e39a7920b22b7666f, type: 3}
-  startRoom: {fileID: 7034887445305348021, guid: fa9d4360415b0cd08aef07136c18fc26, type: 3}
-  endRoom: {fileID: 2480831259781944454, guid: b9979a313209698ad84528b638a0bead, type: 3}
+  - {fileID: 6525627106680853277, guid: fc6b3a31bed05d732b6b1495f88f1dd1, type: 3}
+  - {fileID: 6525627106680853277, guid: 53fb8f68d15bee504a8ee72931c732de, type: 3}
+  - {fileID: 6564067022443088393, guid: 1100b23a5a0d4bff78bacf8e56f37dfd, type: 3}
+  startRoom: {fileID: 6525627106680853277, guid: 2ab7f90f1e2280f3d88690af229154f8, type: 3}
+  endRoom: {fileID: 6525627106680853277, guid: 0ddf3057db7f03132a242aa5657ed2b0, type: 3}
 --- !u!1 &906060395
 GameObject:
   m_ObjectHideFlags: 0

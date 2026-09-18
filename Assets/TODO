@@ -6,7 +6,6 @@ Main changes:
 
 Other changes:
 * Fix weapon tilting
-* Add death screen with reload
 * Add transitions between floors
 
 Quick changes:
@@ -20,3 +19,5 @@ Done:
 * Added GameManager
 * Equip weapons in next empty slot
 * Default weapon always equipped
+* Add death screen
+* Bigger rooms
