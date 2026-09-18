@@ -769,7 +769,7 @@ MonoBehaviour:
   - {fileID: 6525627106680853277, guid: 5346e07d9647194f1b92cfab715221a3, type: 3}
   - {fileID: 6525627106680853277, guid: fc6b3a31bed05d732b6b1495f88f1dd1, type: 3}
   - {fileID: 6525627106680853277, guid: 53fb8f68d15bee504a8ee72931c732de, type: 3}
-  - {fileID: 6564067022443088393, guid: 1100b23a5a0d4bff78bacf8e56f37dfd, type: 3}
+  - {fileID: 6525627106680853277, guid: 8b0a801f26276c5118a059221bfea0ed, type: 3}
   startRoom: {fileID: 6525627106680853277, guid: 2ab7f90f1e2280f3d88690af229154f8, type: 3}
   endRoom: {fileID: 6525627106680853277, guid: 0ddf3057db7f03132a242aa5657ed2b0, type: 3}
 --- !u!1 &906060395
