@@ -1,5 +1,8 @@
 Main changes:
 * Implement cannon
+* Implement PlayerWeaponSpawner (S.O. -> modifiers -> spawn)
+* Implement EnemySpawner (S.O. -> modifiers -> spawn)
+* Implement ConsumableSpawner (S.O. -> modifiers -> spawn)
 
 Other changes:
 * Fix weapon tilting
@@ -12,3 +15,8 @@ Quick changes:
 Done:
 * Add weapon highlight when selectable
 * Add multiple weapon slots
+* Display weapon left usages
+* Added basic death screen
+* Added GameManager
+* Equip weapons in next empty slot
+* Default weapon always equipped

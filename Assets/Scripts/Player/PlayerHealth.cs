@@ -9,17 +9,12 @@ namespace Player
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
 
+    private GameManager _gameManager;
+
     private void Awake()
     {
       currentHealth = maxHealth;
-    }
-
-    private void Update()
-    {
-      if (currentHealth <= 0)
-      {
-        Die();
-      }
+      _gameManager = FindAnyObjectByType<GameManager>();
     }
 
     public Vector2? Position()
@@ -38,9 +33,18 @@ namespace Player
       }
     }
 
+    public void Restart()
+    {
+      currentHealth = maxHealth;
+    }
+
     public void Damage(int damage)
     {
-      currentHealth -= damage;
+      currentHealth -= damage < currentHealth ? damage : currentHealth;
+      if (currentHealth <= 0)
+      {
+        Die();
+      }
     }
 
     public int MaxHealth()
@@ -65,7 +69,7 @@ namespace Player
 
     private void Die()
     {
-      Debug.Log("Y O U D I E D ");
+      _gameManager.ShowDeath();
     }
   }
 }

@@ -30,9 +30,7 @@ namespace Dungeon
     [SerializeField] private GameObject endRoom;
     
     private Dictionary<Vector2Int, GameObject> _rooms = new();
-
-    private int _currentFloor = 1;
-
+    
     public void Awake()
     {
       GenerateDungeon();
@@ -104,7 +102,6 @@ namespace Dungeon
             _rooms[room2].GetComponent<Room>().SetDoor("east", true);
           }
         }
-        
       }
     }
 
@@ -120,6 +117,7 @@ namespace Dungeon
       DestroyAll(GameObject.FindGameObjectsWithTag("PlayerAttack"));
       DestroyAll(GameObject.FindGameObjectsWithTag("EnemyBullet"));
       DestroyAll(GameObject.FindGameObjectsWithTag("LifeRecovery"));
+      DestroyAll(GameObject.FindGameObjectsWithTag("Enemy"));
       
       foreach (Vector2Int room in _rooms.Keys)
       {
@@ -128,11 +126,6 @@ namespace Dungeon
       _rooms.Clear();
       
       GenerateDungeon();
-
-      var player = GameObject.FindGameObjectWithTag("Player");
-      player.transform.position = Vector3.zero;
-
-      _currentFloor++;
     }
 
     private void DestroyAll(GameObject[] gos)
@@ -142,18 +135,13 @@ namespace Dungeon
         Destroy(go);
       }
     }
-    
+
     public void ToggleAllDoors()
     {
       foreach (Vector2Int room in _rooms.Keys)
       {
         _rooms[room].GetComponent<Room>().ToggleOpen();
       }
-    }
-
-    public int CurrentFloor()
-    {
-      return  _currentFloor;
     }
 
   }

@@ -17,15 +17,8 @@ public class WeaponSlot : MonoBehaviour
 
   private void Update()
   {
-    if (weapon == null) return;
-    if (weapon.GetUsagesLeft() < 0)
-    {
-      text.text = "∞";
-    }
-    else
-    {
-      text.text = weapon.GetUsagesLeft().ToString(); 
-    }
+    if (weapon == null) Empty();
+    else text.text = weapon.GetUsagesLeft() > 0 ? weapon.GetUsagesLeft().ToString() : "∞";
   }
 
   public void SetWeapon(WeaponBase newWeapon)

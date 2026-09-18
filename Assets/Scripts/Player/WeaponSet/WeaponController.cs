@@ -13,13 +13,13 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] private MouseListener mouseListener;
 
-    [SerializeField] private int currentWeaponSlot = 0;
-
     [Header("Hold Points")] [SerializeField]
     private Transform[] weaponSlots;
 
     [Header("Weapon Slots")] [SerializeField]
-    private WeaponBase[] equipedWeapons;
+    private WeaponBase[] equippedWeapons;
+    [SerializeField] private int currentWeaponSlot = 0;
+    [SerializeField] private int fixedWeaponSlot = 0;
 
     private IInteractable _currentInteractable;
     private bool _isHoldingClick = false;
@@ -38,15 +38,21 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        if (equipedWeapons == null || weaponSlots == null) return;
+        if (equippedWeapons == null || weaponSlots == null) return;
 
-        int count = Mathf.Min(equipedWeapons.Length, weaponSlots.Length);
+        if (equippedWeapons.Length < 2 && fixedWeaponSlot >= 0)
+        {
+            Debug.Log("There must be at least 2 weapon slot or no fixed weapon slot");
+            Destroy(gameObject);
+        }
+        
+        int count = Mathf.Min(equippedWeapons.Length, weaponSlots.Length);
         for (int i = 0; i < count; i++)
         {
-            var weapon = equipedWeapons[i];
+            var weapon = equippedWeapons[i];
             if (weapon != null && weaponSlots[i] != null)
             {
-                equipedWeapons[i].SetEquipped(weaponSlots[i]);
+                equippedWeapons[i].SetEquipped(weaponSlots[i]);
                 weaponRenderer.RenderWeapon(i, weapon);
             }
             else
@@ -95,6 +101,8 @@ public class WeaponController : MonoBehaviour
             ShootAllWeapons();
         }
     }
+    
+    // Attack
 
     private void RotateAndAim()
     {
@@ -110,9 +118,9 @@ public class WeaponController : MonoBehaviour
                 float slotAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
                 weaponSlots[i].rotation = Quaternion.Euler(0f, 0f, slotAngle);
 
-                if (equipedWeapons != null && i < equipedWeapons.Length && equipedWeapons[i] != null)
+                if (equippedWeapons != null && i < equippedWeapons.Length && equippedWeapons[i] != null)
                 {
-                    equipedWeapons[i].FlipSpriteY(aimDir.x < 0);
+                    equippedWeapons[i].FlipSpriteY(aimDir.x < 0);
                 }
             }
         }
@@ -124,16 +132,16 @@ public class WeaponController : MonoBehaviour
 
     private void ShootAllWeapons()
     {
-        if (equipedWeapons == null || mouseListener == null) return;
+        if (equippedWeapons == null || mouseListener == null) return;
 
-        for (int i = 0; i < equipedWeapons.Length; i++)
+        for (int i = 0; i < equippedWeapons.Length; i++)
         {
-            if (equipedWeapons[i] == null) continue;
+            if (equippedWeapons[i] == null) continue;
 
             Transform slot = (weaponSlots != null && i < weaponSlots.Length) ? weaponSlots[i] : transform;
             Vector2 aimDir = slot != null ? mouseListener.GetAimDirection(slot.position) : (Vector2)transform.right;
 
-            equipedWeapons[i].Shoot(aimDir);
+            equippedWeapons[i].Shoot(aimDir);
         }
     }
 
@@ -154,43 +162,75 @@ public class WeaponController : MonoBehaviour
         _isHoldingClick = false;
     }
 
+    // Equipped weapons
+    
     private void HandleWeaponChange(int movement)
     {
-        if (equipedWeapons == null || equipedWeapons.Length == 0) return;
+        if (equippedWeapons == null || equippedWeapons.Length == 0) return;
 
-        weaponRenderer.SetSelected(currentWeaponSlot, false);
+        weaponRenderer.SetSelected(currentWeaponSlot);
         
-        int totalSlots = equipedWeapons.Length;
+        int totalSlots = equippedWeapons.Length;
         currentWeaponSlot = (currentWeaponSlot + movement) % totalSlots;
         if (currentWeaponSlot < 0) currentWeaponSlot += totalSlots;
         
-        weaponRenderer.SetSelected(currentWeaponSlot, true);
+        weaponRenderer.SetSelected(currentWeaponSlot);
     }
 
     public void EquipWeapon(WeaponBase newWeapon)
     {
-        if (newWeapon == null || equipedWeapons == null || equipedWeapons.Length == 0) return;
+        if (newWeapon == null || equippedWeapons == null || equippedWeapons.Length == 0) return;
 
-        if (currentWeaponSlot < 0 || currentWeaponSlot >= equipedWeapons.Length)
-        {
-            currentWeaponSlot = 0;
-        }
+        CheckNextSlot();
+        weaponRenderer.SetSelected(currentWeaponSlot);
 
-        Transform targetSlot = (weaponSlots != null && currentWeaponSlot < weaponSlots.Length)
+    Transform targetSlot = (weaponSlots != null && currentWeaponSlot < weaponSlots.Length)
             ? weaponSlots[currentWeaponSlot]
             : transform;
 
-        if (equipedWeapons[currentWeaponSlot] != null)
+        if (equippedWeapons[currentWeaponSlot] != null)
         {
-            equipedWeapons[currentWeaponSlot].SetDropped();
+            equippedWeapons[currentWeaponSlot].SetDropped();
         }
 
-        equipedWeapons[currentWeaponSlot] = newWeapon;
-        equipedWeapons[currentWeaponSlot].SetEquipped(targetSlot);
+        equippedWeapons[currentWeaponSlot] = newWeapon;
+        equippedWeapons[currentWeaponSlot].SetEquipped(targetSlot);
         _currentInteractable = null;
 
         weaponRenderer.RenderWeapon(currentWeaponSlot, newWeapon);
     }
+
+    private void CheckNextSlot()
+    {
+        if (currentWeaponSlot < 0 || currentWeaponSlot >= equippedWeapons.Length)
+        {
+            currentWeaponSlot = 0;
+        }
+
+        // Case 1: empty slot 
+        if (equippedWeapons[currentWeaponSlot] == null) return;
+        // Case 2: on fixed slot
+        if (currentWeaponSlot == fixedWeaponSlot)
+        {
+            currentWeaponSlot++;
+            CheckNextSlot();
+            return;
+        }
+        // Case 3: on common occupied slot with empty slots
+        for (int i = 0; i < equippedWeapons.Length; i++)
+        {
+            var weapon = equippedWeapons[i];
+            if (weapon == null)
+            {
+                currentWeaponSlot = i;
+                return;
+            }
+        }
+        // Case 4: on common occupied slot with no empty slots
+        return;
+    }
+
+    // Triggers
 
     private void OnTriggerEnter2D(Collider2D other)
     {

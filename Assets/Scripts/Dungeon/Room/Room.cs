@@ -77,10 +77,5 @@ namespace Dungeon
       _southDoor.Toggle();
       _westDoor.Toggle();
     }
-
-    public void ButtonPressed()
-    {
-      Debug.Log("Button pressed");
-    }
   }
 }
