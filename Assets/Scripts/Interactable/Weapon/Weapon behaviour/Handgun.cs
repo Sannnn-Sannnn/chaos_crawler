@@ -16,7 +16,7 @@ namespace Weapon
     public override void Shoot(Vector2 aimDirection)
     {
       // Validar si está equipada y si ya pasó el cooldown
-      if (!IsEquipped || Time.time - LastShotTime < cooldown) return;
+      if (!IsEquipped() || Time.time - LastShotTime < cooldown) return;
       LastShotTime = Time.time;
 
       // Determinar posición de spawn (firePoint o la posición del arma)

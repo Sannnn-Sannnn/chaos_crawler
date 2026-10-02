@@ -17,7 +17,7 @@ namespace Weapon
 
     public override void Shoot(Vector2 aimDirection)
     {
-      if (!IsEquipped || Time.time - LastShotTime < cooldown) return;
+      if (!IsEquipped() || Time.time - LastShotTime < cooldown) return;
       LastShotTime = Time.time;
 
       Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position;

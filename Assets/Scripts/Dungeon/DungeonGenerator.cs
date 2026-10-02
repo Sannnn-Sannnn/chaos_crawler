@@ -30,11 +30,6 @@ namespace Dungeon
     [SerializeField] private GameObject endRoom;
     
     private Dictionary<Vector2Int, GameObject> _rooms = new();
-    
-    public void Awake()
-    {
-      GenerateDungeon();
-    }
 
     private void GenerateDungeon()
     {
@@ -111,7 +106,7 @@ namespace Dungeon
       foreach (GameObject weapon in playerWeapons)
       {
         var weaponComponent = weapon.GetComponent<WeaponBase>();
-        if (!weaponComponent.IsEquipped) Destroy(weapon);
+        if (!weaponComponent.IsEquipped()) Destroy(weapon);
       }
       
       DestroyAll(GameObject.FindGameObjectsWithTag("PlayerAttack"));

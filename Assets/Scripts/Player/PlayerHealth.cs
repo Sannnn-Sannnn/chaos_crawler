@@ -23,14 +23,11 @@ namespace Player
       {
         return transform.position;
       }
-      else
-      {
         /*
          * Because the position (0, 0) is always at the spawn of the dungeon, there will never be any enemy that could
          * chase the player when in those coordinates -> a default/empty value cannot be returned instead
          */
         return null;
-      }
     }
 
     public void Restart()

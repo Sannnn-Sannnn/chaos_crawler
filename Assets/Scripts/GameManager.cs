@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
+        
+        dungeonGenerator.RegenerateDungeon();
+        ResetPlayerPosition();
+        
+        var playerHealth = GameObject.FindWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
+        playerHealth.Restart();
     }
     
     // Floor navigation
@@ -38,10 +44,8 @@ public class GameManager : MonoBehaviour
     private void ResetPlayerPosition()
     {
         var player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = Vector3.zero;
-        
-        var playerHealth = GameObject.FindWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
-        playerHealth.Restart();
+        var playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
+        player.transform.position = playerSpawnPoint.transform.position;
     }
     
     // Death
@@ -63,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-
+        SceneManager.LoadScene(mainMenuSceneIndex);
     }
     
     // Pause

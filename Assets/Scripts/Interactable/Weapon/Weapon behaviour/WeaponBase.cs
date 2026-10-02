@@ -14,7 +14,7 @@ namespace Weapon
     protected SpriteRenderer WeaponSprite;
     protected float LastShotTime = -1000f;
 
-    public bool IsEquipped { get; protected set; }
+    [SerializeField] private bool isEquipped;
     
     public Sprite GetSprite() => WeaponSprite.sprite;
     public int GetUsagesLeft() => usagesLeft;
@@ -28,7 +28,7 @@ namespace Weapon
     // --- IINTERACTABLE ---
     public virtual void Interact(WeaponController controller)
     {
-      if (!IsEquipped)
+      if (!isEquipped)
       {
         controller.EquipWeapon(this);
       }
@@ -44,9 +44,11 @@ namespace Weapon
     }
 
     // --- ESTADOS: EQUIPADA / EN SUELO ---
+    
+    public bool IsEquipped() => isEquipped;
     public virtual void SetEquipped(Transform parentHoldPoint)
     {
-      IsEquipped = true;
+      isEquipped = true;
       PickupCollider.enabled = false;
 
       transform.SetParent(parentHoldPoint);
@@ -56,7 +58,7 @@ namespace Weapon
 
     public virtual void SetDropped()
     {
-      IsEquipped = false;
+      isEquipped = false;
       transform.SetParent(null);
       PickupCollider.enabled = true;
     }

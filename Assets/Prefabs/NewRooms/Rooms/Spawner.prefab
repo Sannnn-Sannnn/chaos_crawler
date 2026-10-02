@@ -102,14 +102,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6564067022443088393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec886e8f8004d26a4952e2580e8535f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a09d7f66e61eb91987bfa0a7d4c7a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dungeon.EnemySpawner
   enemyPrefabs:
   - {fileID: 908729971913051575, guid: e3af64830e93f49d7b23fc0bb3ba968b, type: 3}
   - {fileID: 908729971913051575, guid: f7a3754a9786b04788b608ef872f57b3, type: 3}
   minEnemies: 5
-  maxEnemies: 10
-  roomHeight: 10
-  roomWidth: 10
-  minDoorDistance: 5
+  maxEnemies: 15
+  roomHeight: 25
+  roomWidth: 25
+  minDoorDistance: 7

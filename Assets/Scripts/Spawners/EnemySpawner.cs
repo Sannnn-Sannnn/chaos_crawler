@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Enemy;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace Dungeon
@@ -16,9 +14,11 @@ namespace Dungeon
     [SerializeField] private int roomHeight;
     [SerializeField] private int roomWidth;
     [SerializeField] private int minDoorDistance = 0;
-    private int _enemyAmount;
-    private int _enemyCount;
+    private int _enemyAmount; // Amount to spawn
+    private int _enemyCount;  // Amount spawned
     private List<Vector2> _spawnPositions = new();
+    private Transform _spawnAnchor; // (0, 0) from room
+    private Vector3 _roomPositionZero;
 
     private DoorTrigger _trigger;
 
@@ -31,6 +31,10 @@ namespace Dungeon
       if (maxEnemies < 0) maxEnemies = 0;
       if (minEnemies > maxEnemies) maxEnemies = minEnemies;
       _enemyAmount = Random.Range(minEnemies, maxEnemies + 1);
+
+
+      _spawnAnchor = transform.parent.Find("EnemySpawnAnchor");
+      _roomPositionZero = _spawnAnchor.position;
     }
 
     public void SpawnEnemies()
@@ -46,43 +50,40 @@ namespace Dungeon
         _enemyCount++;
       }
     }
-
+    
     private Vector3 GetRandomPosition()
     {
-      while (true)
+      const int maxAttempts = 100;
+      int halfWidth = roomWidth / 2;
+      int halfHeight = roomHeight / 2;
+
+      for (int i = 0; i < maxAttempts; i++)
       {
-        var posX = Random.Range(-roomHeight / 2, roomHeight / 2 + 1);
-        var posY = Random.Range(-roomWidth / 2, roomWidth / 2 + 1);
-        var spawnPosition = transform.position + new Vector3(posX, posY, transform.position.z);
-        if (!_spawnPositions.Contains(spawnPosition) || IsCloseToDoor(spawnPosition))
+        int posX = Random.Range(-halfWidth + 1, halfWidth);
+        int posY = Random.Range(-halfHeight + 1, halfHeight);
+
+        Vector3 spawnPosition = _roomPositionZero + new Vector3(posX, posY, 0);
+
+        if (!_spawnPositions.Contains(spawnPosition) && !IsCloseToDoor(spawnPosition))
         {
           _spawnPositions.Add(spawnPosition);
           return spawnPosition;
         }
       }
+      return _roomPositionZero;
     }
 
     private bool IsCloseToDoor(Vector3 pos)
     {
-      var northDoor = new Vector2(0, roomHeight / 2f);
-      var eastDoor = new Vector2(roomWidth / 2f, 0);
-      var southDoor = new Vector2(0, -roomHeight / 2f);
-      var westDoor = new Vector2(-roomWidth / 2f, 0);
-
-      float[] distances =
-      {
-        Vector3.Distance(pos, northDoor), Vector3.Distance(pos, eastDoor), Vector3.Distance(pos, southDoor),
-        Vector3.Distance(pos, westDoor)
-      };
-
-      foreach (var distance in distances)
-      {
-        if (distance > minDoorDistance)
-        {
-          return true;
-        }
-      }
-      return false;
+      Vector3 northDoor = _roomPositionZero + new Vector3(0, roomHeight / 2f, 0);
+      Vector3 southDoor = _roomPositionZero + new Vector3(0, -roomHeight / 2f, 0);
+      Vector3 eastDoor  = _roomPositionZero + new Vector3(roomWidth / 2f, 0, 0);
+      Vector3 westDoor  = _roomPositionZero + new Vector3(-roomWidth / 2f, 0, 0);
+      
+      return Vector3.Distance(pos, northDoor) < minDoorDistance ||
+             Vector3.Distance(pos, southDoor) < minDoorDistance ||
+             Vector3.Distance(pos, eastDoor)  < minDoorDistance ||
+             Vector3.Distance(pos, westDoor)  < minDoorDistance;
     }
 
     public void Down()
