@@ -2605,7 +2605,7 @@ MonoBehaviour:
   gameOverMenu: {fileID: 1933813962}
   mainMenuSceneIndex: 0
   dungeonGenerator: {fileID: 856934602}
-  currentFloor: 0
+  currentFloor: 1
 --- !u!1 &1450922399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,7 +2828,7 @@ SpriteRenderer:
   m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 58537775430694542, guid: 1487bf852d85656ec8a86744bbed07b0, type: 3}
+  m_Sprite: {fileID: -6142374563283994760, guid: b2954b87077f70dad9dba6f3c70ea99b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
