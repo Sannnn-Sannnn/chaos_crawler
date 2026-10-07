@@ -2,10 +2,14 @@ using Dungeon;
 using Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InfoDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI floorNumber;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private Image staminaBar;
+    
     private PlayerHealth _playerHealth;
     private GameManager _gameManager;
 
@@ -23,6 +27,7 @@ public class InfoDisplay : MonoBehaviour
         var playerHealth = _playerHealth.Health();
         var currentFloor = _gameManager.CurrentFloor();
 
-        text.text = "HP: " + playerHealth + " / " + _playerMaxHealth + "\nFloor: " +  currentFloor;
+        floorNumber.text = currentFloor.ToString();
+        healthBar.fillAmount = (float) playerHealth / _playerMaxHealth;
     }
 }

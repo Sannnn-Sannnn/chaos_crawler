@@ -8,9 +8,11 @@ public class WeaponRenderer : MonoBehaviour
   private WeaponSlot[] uiWeaponSlots;
 
   [SerializeField] private int fixedSlot = 0;
-  [SerializeField] private Color defaultColour = new Color32(255, 255, 255, 90);
-  [SerializeField] private Color selectedColour = new Color32(0, 255, 255, 90);
-  [SerializeField] private Color fixedColour = new Color32(0, 255, 255, 90);
+
+  private void Awake()
+  {
+    uiWeaponSlots[fixedSlot].SetFixed(true);
+  }
 
   public void RenderWeapon(int index, [CanBeNull] WeaponBase weapon)
   {
@@ -30,7 +32,7 @@ public class WeaponRenderer : MonoBehaviour
     for (int i = 0; i < uiWeaponSlots.Length; i++)
     {
       var slot = uiWeaponSlots[i];
-      slot.SetColour(i == selectedIndex ? selectedColour : i == fixedSlot ? fixedColour : defaultColour);
+      slot.SetSelected(selectedIndex == i);
     }
   }
 }
