@@ -2,31 +2,29 @@ Pre-MVP:
 
 Main changes:
 * Implement cannon
-
-Other changes:
-* Fix weapon tilting
-* Add transitions between floors
-* Add weapon highlight for pickup
-
----
-
-Post-MVP:
-
-Main changes:
 * Implement PlayerWeaponSpawner (S.O. -> modifiers -> spawn)
 * Implement EnemySpawner (S.O. -> modifiers -> spawn)
 * Implement ConsumableSpawner (S.O. -> modifiers -> spawn)
 * +2 HP for every floor
 * Change spare weapon and equip again when out of weapons
+* Add stamina consumption
+* Add dash in mouse direction 
+* Add numeric HP indicator
+* Add custom font
+* Upgrade Main menu and pause/death screens
+* Add weapon change on numeric buttons
+
+Other changes:
+* Fix weapon tilting
+* Add transitions between floors
+* Add weapon highlight for pickup
+* Add sprites
+* Fix weapon positioning
 
 Each Script has a min(f) and max(f) functions that determine the stats based on the current floor
 + Enemies
 + Weapons
 + Consumables
-
-Other changes:
-* Add sprites
-* Fix weapon positioning
 
 ---
 
@@ -43,3 +41,6 @@ Done:
 * Fix player spawn point -> delegate to DungeonGenerator
 * Added Pause screen
 * Added Main menu
+Post MVP:
+* Added dash
+* Upgraded UI

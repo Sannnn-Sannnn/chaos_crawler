@@ -40,19 +40,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "89f8c719-00d7-431e-8d21-53e23a63e23d",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f2449a9e-5547-4a95-8c95-5fa0ced10912",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

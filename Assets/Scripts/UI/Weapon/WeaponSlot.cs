@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -42,10 +43,10 @@ public class WeaponSlot : MonoBehaviour
     }
     else
     {
-        SetColour(isFixed ? fixedColour : defaultColour);
+      SetColour(isFixed ? fixedColour : defaultColour);
     }
   }
-  
+
   public void SetFixed(bool isFixed)
   {
     this.isFixed = isFixed;

@@ -171,10 +171,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
   firePoint: {fileID: 1935579058962193708}
-  usagesLeft: -1
+  usagesLeft: 20
   isEquipped: 0
   bulletPrefab: {fileID: 5688210247292529260, guid: d4421e2d93f524847b06d9616602c781, type: 3}
-  damage: 5
+  damage: 15
   cooldown: 0.25
   speed: 20
   deviation: 5

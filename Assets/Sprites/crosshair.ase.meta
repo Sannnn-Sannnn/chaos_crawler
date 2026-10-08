@@ -127,7 +127,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: crosshair
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.53333336, y: -0.06666667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -135,8 +135,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 16
+      width: 15
+      height: 15
     spriteID: d790c50781060e3b5bb5ebc57072cb58
     spriteBone: []
     spriteOutline: []
@@ -166,9 +166,9 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
-        width: 16
-        height: 16
+        y: 1
+        width: 15
+        height: 15
       spriteId: d790c50781060e3b5bb5ebc57072cb58
     linkedCells: []
     tileCells: []

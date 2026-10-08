@@ -11,6 +11,11 @@ public class WeaponRenderer : MonoBehaviour
 
   private void Awake()
   {
+    for (int i = 0; i < uiWeaponSlots.Length; i++)
+    {
+      var slot = uiWeaponSlots[i];
+      slot.SetSelected(i == fixedSlot);
+    }
     uiWeaponSlots[fixedSlot].SetFixed(true);
   }
 
