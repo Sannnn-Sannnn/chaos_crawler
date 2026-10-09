@@ -3842,9 +3842,8 @@ MonoBehaviour:
   dashAction: {fileID: 5113511478827074656, guid: a5269ea1f2ffc3d439d926e82d5ca6c8, type: 3}
   dashSpeed: 80
   dashDuration: 0.1
-  dashCooldown: 2
-  _isDashing: 0
-  _canDash: 1
+  _stamina: 0
+  staminaRecovery: 5
 --- !u!1 &3605922336757852602
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,11 +4005,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 301234928011667676, guid: b3fc81b6d14c230d2a79623f3b9e82a9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 301234928011667676, guid: b3fc81b6d14c230d2a79623f3b9e82a9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 301234928011667676, guid: b3fc81b6d14c230d2a79623f3b9e82a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

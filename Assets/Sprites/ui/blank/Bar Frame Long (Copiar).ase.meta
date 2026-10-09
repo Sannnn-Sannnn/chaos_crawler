@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 68f80a2dd33e08cfb835034dbae4c61b
+guid: f58eb976a91deac8eab303f82dca9dab
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -125,7 +125,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: Bar Frame Long (Copiar)
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -135,9 +135,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 8
-      height: 8
-    spriteID: 295e03ef49ac86abf9ff75c086e6254d
+      width: 1287
+      height: 266
+    spriteID: 1396316574fb72771b73b9c0a6787368
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,120 +146,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 20
-      y: 4
-      width: 6
-      height: 8
-    spriteID: 50d173dad5e57f15bb8ffe2e0ebe985a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 20, y: 4}
-  - name: Frame_2
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 18
-      y: 20
-      width: 4
-      height: 8
-    spriteID: 1651340b280bdab5ca3b816c4e6942c2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 18, y: 20}
-  - name: Frame_3
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 20
-      width: 6
-      height: 8
-    spriteID: c16646482bffb72b28bb9f1bf688269b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 20}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1367190883
+      value0: 2557991481
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: coin
+    name: Bar Frame Long (Copiar)
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Bar Frame Long (Copiar)
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 8
-        height: 8
-      spriteId: 295e03ef49ac86abf9ff75c086e6254d
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 1
-        y: 0
-        width: 6
-        height: 8
-      spriteId: 50d173dad5e57f15bb8ffe2e0ebe985a
-    - name: Frame_2
-      frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 2
-        y: 0
-        width: 4
-        height: 8
-      spriteId: 1651340b280bdab5ca3b816c4e6942c2
-    - name: Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 1
-        y: 0
-        width: 6
-        height: 8
-      spriteId: c16646482bffb72b28bb9f1bf688269b
+        width: 1287
+        height: 266
+      spriteId: 1396316574fb72771b73b9c0a6787368
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -268,5 +178,5 @@ ScriptedImporter:
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 32, y: 32}
-  canvasSize: {x: 8, y: 8}
+  previousTextureSize: {x: 2048, y: 512}
+  canvasSize: {x: 1287, y: 260}

@@ -16,10 +16,13 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] private InputActionReference dashAction;
   [SerializeField] private float dashSpeed;
   [SerializeField] private float dashDuration;
-  [SerializeField] private float dashCooldown;
+
+  private int _maxStamina = 100;
+  [SerializeField] private int _stamina;
+  [SerializeField] private int staminaRecovery;
   
-  [SerializeField] private bool _isDashing = false;
-  [SerializeField] private bool _canDash = true;
+  private bool _isDashing = false;
+  private bool _canDash = true;
 
   private Rigidbody2D _rb;
   private Vector2 _movement;
@@ -28,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
   private void Awake()
   {
     _rb = GetComponent<Rigidbody2D>();
+    _stamina = _maxStamina;
   }
 
   private void OnEnable()
@@ -60,7 +64,11 @@ public class PlayerMovement : MonoBehaviour
     }
     else
     {
-      _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime); 
+      _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime);
+      if (_stamina < _maxStamina)
+      {
+        _stamina += staminaRecovery;
+      }
     }
   }
   
@@ -75,20 +83,20 @@ public class PlayerMovement : MonoBehaviour
 
   private void HandleDash(InputAction.CallbackContext ctx)
   {
-    if (!_canDash || _isDashing || !_isAlive) return;
+    if (_isDashing || !_isAlive) return;
+    if (_stamina < _maxStamina / 3) return;
     StartCoroutine(DashRoutine());
   }
 
   private IEnumerator DashRoutine()
   {
     // Start Dash
-    _canDash = false;
     _isDashing = true;
+    _stamina -= _maxStamina / 3;
     yield return new WaitForSeconds(dashDuration);
     _isDashing = false;
-    
-    // Manage Cooldown
-    yield return new WaitForSeconds(dashCooldown);
-    _canDash = true;
   }
+
+  public int MaxStamina() => _maxStamina;
+  public int Stamina() => _stamina;
 }

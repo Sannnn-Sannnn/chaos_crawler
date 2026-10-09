@@ -10,11 +10,13 @@ namespace Player
     [SerializeField] private int currentHealth;
 
     private GameManager _gameManager;
+    private PlayerMovement _playerMovement;
 
     private void Awake()
     {
       currentHealth = maxHealth;
       _gameManager = FindAnyObjectByType<GameManager>();
+      _playerMovement = GetComponent<PlayerMovement>();
     }
 
     public Vector2? Position()

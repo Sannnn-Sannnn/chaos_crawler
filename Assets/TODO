@@ -20,6 +20,7 @@ Other changes:
 * Add weapon highlight for pickup
 * Add sprites
 * Fix weapon positioning
+* Dash can pass through walls
 
 Each Script has a min(f) and max(f) functions that determine the stats based on the current floor
 + Enemies
