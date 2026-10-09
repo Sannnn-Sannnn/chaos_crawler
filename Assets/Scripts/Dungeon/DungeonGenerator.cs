@@ -22,7 +22,11 @@ namespace Dungeon
     [SerializeField] private float minProbability = 0.0f;
     [SerializeField] private float probabilityDecrement = 0.0f;
 
-    [SerializeField] private int gridScale = 20;
+    [SerializeField] private int roomSizeX;
+    [SerializeField] private int roomSizeY;
+    
+    [SerializeField] private bool branchFromStart;
+    [SerializeField] private bool branchFromEnd;
     
     [Header("Room Prefabs")]
     [SerializeField] private GameObject[] roomPrefabs;
@@ -36,7 +40,7 @@ namespace Dungeon
       // Generate dungeon data
       (List<Vector2Int>, List<(Vector2Int, Vector2Int)>, Vector2Int) dungeon = DungeonGeneration.GenerateDungeon(
         maxRooms, maxIterations, minDistance, maxDistance, minX, initialProbability, minProbability,
-        probabilityDecrement);
+        probabilityDecrement, branchFromStart, branchFromEnd);
 
       // Instantiate rooms
       foreach (Vector2Int room in dungeon.Item1)
@@ -44,14 +48,14 @@ namespace Dungeon
         if (!room.Equals(Vector2Int.zero) && !room.Equals(dungeon.Item3))
         {
           var roomPref = roomPrefabs[Random.Range(0, roomPrefabs.Length)];
-          var roomObject = Instantiate(roomPref, new Vector3(room.x, room.y, 0) * gridScale, Quaternion.identity);
+          var roomObject = Instantiate(roomPref, new Vector3(room.x * roomSizeX, room.y * roomSizeY, 0), Quaternion.identity);
           _rooms.Add(room, roomObject);
         }
       }
 
       // Start and end rooms
       var startRoomObject = Instantiate(startRoom, Vector3.zero, Quaternion.identity);
-      var endRoomObject = Instantiate(endRoom, new Vector3(dungeon.Item3.x, dungeon.Item3.y, 0) * gridScale,
+      var endRoomObject = Instantiate(endRoom, new Vector3(dungeon.Item3.x * roomSizeX, dungeon.Item3.y * roomSizeY, 0),
         Quaternion.identity);
       _rooms.Add(Vector2Int.zero, startRoomObject);
       _rooms.Add(dungeon.Item3, endRoomObject);

@@ -41,7 +41,7 @@ public class MouseListener : MonoBehaviour
     return (_mouseWorldPosition - origin).normalized;
   }
 
-  private void Update()
+  private void FixedUpdate()
   {
     _mouseScreenPosition = mousePosition.action.ReadValue<Vector2>();
     Vector3 screenPosition = new Vector3(

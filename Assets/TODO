@@ -15,7 +15,6 @@ Main changes:
 * Add weapon change on numeric buttons
 
 Other changes:
-* Fix weapon tilting
 * Add transitions between floors
 * Add weapon highlight for pickup
 * Add sprites
@@ -45,3 +44,4 @@ Done:
 Post MVP:
 * Added dash
 * Upgraded UI
+* Fix weapon tilting

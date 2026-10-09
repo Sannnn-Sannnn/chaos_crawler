@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
 public class DungeonGeneration
@@ -12,100 +11,100 @@ public class DungeonGeneration
         int minX,
         float initialProbability,
         float minProbability,
-        float probabilityDecrement
-        )
+        float probabilityDecrement,
+        bool branchFromStart,
+        bool branchFromEnd
+    )
     {
-        // 1. Create ending room
-        int safeMaxDistance = maxDistance > maxRooms ? maxRooms : maxDistance;
+        // 1. Validar y calcular fin
+        int safeMaxDistance = Mathf.Min(maxDistance, maxRooms - 1);
         int distance = Random.Range(minDistance, safeMaxDistance + 1);
-        int fx = Random.Range(minX, distance - minX);
+
+        // Asegurar que minX no exceda la mitad de la distancia
+        int clampedMinX = Mathf.Clamp(minX, 0, distance / 2);
+        int maxX = distance - clampedMinX;
+        int fx = (clampedMinX >= maxX) ? clampedMinX : Random.Range(clampedMinX, maxX + 1);
         int fy = distance - fx;
 
-        int[] negat = { -1, 1 };
+        int[] signs = { -1, 1 };
+        Vector2Int end = new Vector2Int(
+            fx * signs[Random.Range(0, signs.Length)],
+            fy * signs[Random.Range(0, signs.Length)]
+        );
 
-        Vector2Int end = new Vector2Int(fx * negat[Random.Range(0, negat.Length)], fy * negat[Random.Range(0, negat.Length)]);
-
-        // 2. Navigate from (0, 0) to end
-        List<Vector2Int> dungeon = new List<Vector2Int>();
+        // 2. Trazar camino inicial desde (0, 0) hasta end
+        HashSet<Vector2Int> occupiedRooms = new HashSet<Vector2Int>();
         List<(Vector2Int, Vector2Int)> corridors = new List<(Vector2Int, Vector2Int)>();
-        List<Vector2Int> nextIteration = new List<Vector2Int>();
-        Vector2Int step = new Vector2Int(0, 0);
+        List<Vector2Int> frontier = new List<Vector2Int>();
 
-        while (!step.Equals(end))
+        Vector2Int current = Vector2Int.zero;
+        occupiedRooms.Add(current);
+        frontier.Add(current);
+
+        while (current != end)
         {
-            bool canMoveX = step.x != end.x;
-            bool canMoveY = step.y != end.y;
-            char[] values = { 'x', 'y' };
-            char targetValue;
+            bool canMoveX = current.x != end.x;
+            bool canMoveY = current.y != end.y;
             Vector2Int nextStep;
 
-            if (canMoveX && canMoveY)
+            bool moveHorizontally = (canMoveX && canMoveY) ? (Random.value > 0.5f) : canMoveX;
+
+            if (moveHorizontally)
             {
-                targetValue = values[Random.Range(0, values.Length)];
-            }
-            else if (canMoveX)
-            {
-                targetValue = 'x';
+                nextStep = new Vector2Int(current.x + (current.x > end.x ? -1 : 1), current.y);
             }
             else
             {
-                targetValue = 'y';
+                nextStep = new Vector2Int(current.x, current.y + (current.y > end.y ? -1 : 1));
             }
 
-            if (targetValue == 'x')
-            {
-                nextStep = step.x > end.x ? new Vector2Int(step.x - 1, step.y) : new Vector2Int(step.x + 1, step.y);
-            }
-            else
-            {
-                nextStep = step.y > end.y ? new Vector2Int(step.x, step.y - 1) : new Vector2Int(step.x, step.y + 1);
-            }
-            nextIteration.Add(step);
-            corridors.Add((step, nextStep));
-            step = nextStep;
+            corridors.Add((current, nextStep));
+            occupiedRooms.Add(nextStep);
+            frontier.Add(nextStep);
+            current = nextStep;
         }
 
-        nextIteration.Add(end);
-        
-        // 3. Populate dungeon
-        int roomCount = nextIteration.Count;
+        // 3. Ramificaciones
         float p = initialProbability;
-        Vector2Int[] directions = { new (1, 0), new (0, 1), new (-1, 0), new (0, -1) };
         int currentIteration = 0;
+        Vector2Int[] directions = { Vector2Int.right, Vector2Int.up, Vector2Int.left, Vector2Int.down };
 
-        while (nextIteration.Count > 0 && p >= minProbability && currentIteration < maxIterations)
+        while (frontier.Count > 0 && p >= minProbability && currentIteration < maxIterations)
         {
-            List<Vector2Int> newRooms = new List<Vector2Int>();
-            foreach (Vector2Int room in nextIteration)
+            List<Vector2Int> nextFrontier = new List<Vector2Int>();
+
+            foreach (Vector2Int room in frontier)
             {
-                foreach (Vector2Int direction in directions)
+                if (!branchFromStart && room == Vector2Int.zero) continue;
+                if (!branchFromEnd && room == end) continue;
+
+                foreach (Vector2Int dir in directions)
                 {
-                    if (Random.Range(0f, 1f) < p)
+                    if (Random.value < p)
                     {
-                        Vector2Int newRoom = new Vector2Int(room.x + direction.x, room.y + direction.y);
-                        corridors.Add((room, newRoom));
-                        if (!newRooms.Contains(newRoom) && !nextIteration.Contains(newRoom) && !dungeon.Contains(newRoom))
+                        Vector2Int newRoom = room + dir;
+
+                        // Solo se crea si la celda está vacía
+                        if (!occupiedRooms.Contains(newRoom))
                         {
-                            newRooms.Add(newRoom);
-                            roomCount += 1;
-                            if (roomCount >= maxRooms)
+                            occupiedRooms.Add(newRoom);
+                            nextFrontier.Add(newRoom);
+                            corridors.Add((room, newRoom));
+
+                            if (occupiedRooms.Count >= maxRooms)
                             {
-                                dungeon.AddRange(nextIteration);
-                                dungeon.AddRange(newRooms);
-                                return (dungeon, corridors, end);
+                                return (new List<Vector2Int>(occupiedRooms), corridors, end);
                             }
                         }
                     }
                 }
             }
 
-            dungeon.AddRange(nextIteration);
-            nextIteration = newRooms;
+            frontier = nextFrontier;
             p -= probabilityDecrement;
             currentIteration++;
         }
 
-        dungeon.AddRange(nextIteration);
-        return (dungeon, corridors, end);
+        return (new List<Vector2Int>(occupiedRooms), corridors, end);
     }
 }

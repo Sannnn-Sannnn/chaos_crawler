@@ -32,8 +32,8 @@ TagManager:
   - EnemySpawner
   - Flag
   - PlayerDamageHitbox
-  - 
-  - 
+  - InteriorWall
+  - Hole
   - 
   - 
   - 

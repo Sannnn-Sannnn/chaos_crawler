@@ -92,7 +92,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         RotateAndAim();
 

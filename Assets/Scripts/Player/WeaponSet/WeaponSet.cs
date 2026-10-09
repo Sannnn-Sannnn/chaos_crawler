@@ -12,7 +12,7 @@ namespace Player.WeaponSet
       if (listener != null) _mousePositionListener = listener.GetComponent<MouseListener>();
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
       Rotate();
     }

@@ -5,9 +5,16 @@ public class CameraBehaviour : MonoBehaviour
 {
 
     [SerializeField] private PlayerMovement player;
+
+    private float _z;
     
-    void Update()
+    void Awake()
     {
-        transform.position = player.transform.position;
+        _z = transform.position.z;
+    }
+    
+    void FixedUpdate()
+    {
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, _z);
     }
 }
