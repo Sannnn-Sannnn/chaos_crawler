@@ -1,24 +1,16 @@
-Pre-MVP:
-
 Main changes:
 * Implement cannon
 * Implement PlayerWeaponSpawner (S.O. -> modifiers -> spawn)
 * Implement EnemySpawner (S.O. -> modifiers -> spawn)
 * Implement ConsumableSpawner (S.O. -> modifiers -> spawn)
-* +2 HP for every floor
 * Change spare weapon and equip again when out of weapons
-* Add stamina consumption
 * Add dash in mouse direction 
 * Add custom font
 * Upgrade Main menu and pause/death screens
-* Add weapon change on numeric buttons
 
 Other changes:
-* Add transitions between floors
 * Add weapon highlight for pickup
 * Add sprites
-* Fix weapon positioning
-* Dash can pass through walls
 
 Each Script has a min(f) and max(f) functions that determine the stats based on the current floor
 + Enemies
@@ -45,3 +37,8 @@ Post MVP:
 * Upgraded UI
 * Fix weapon tilting
 * Add numeric HP indicator
+* +2 HP for every floor
+* Add stamina consumption
+* Add transitions between floors
+* Dash can pass through walls -> shouldn't
+* Add weapon change on numeric buttons

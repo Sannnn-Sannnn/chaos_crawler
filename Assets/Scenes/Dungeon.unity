@@ -800,6 +800,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba0332cc17b40fc941d7018e6429439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon.Handgun
+--- !u!1 &541453114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 541453115}
+  - component: {fileID: 541453116}
+  m_Layer: 6
+  m_Name: WeaponChangeListener
+  m_TagString: MouseListener
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &541453115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541453114}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1301658572}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &541453116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541453114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baca50e4fff444678ee42c38bdb627aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponChangeTracker
+  mouseScroll: {fileID: -3165924967164949404, guid: 3d1e5259a1a0f279caede69d59d5525b, type: 3}
+  mouseScrollCooldown: 0.1
+  inverted: 0
+  numpad: {fileID: -3887749340223654069, guid: 3d1e5259a1a0f279caede69d59d5525b, type: 3}
 --- !u!1 &576328591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2748,6 +2796,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 541453115}
   - {fileID: 8836779579314675839}
   - {fileID: 8488454044979835941}
   - {fileID: 8381108960611378572}
@@ -2805,6 +2854,7 @@ MonoBehaviour:
   weaponRenderer: {fileID: 391586443}
   mouseClickListener: {fileID: 2217566007168011551, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
   mouseListener: {fileID: 2990517372592796535}
+  weaponChangeListener: {fileID: 541453116}
   weaponSlots:
   - {fileID: 8836779579314675839}
   - {fileID: 8488454044979835941}
@@ -5000,9 +5050,6 @@ MonoBehaviour:
   mainCamera: {fileID: 1548049350481344625}
   crosshair: {fileID: 1460578757}
   mousePosition: {fileID: 7618003714060984059, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
-  mouseScroll: {fileID: 1082816895353977542, guid: d7401f585c332ea5ea294db0c611ce6a, type: 3}
-  mouseScrollCooldown: 0
-  inverted: 0
 --- !u!114 &3032059465748294609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5063,7 +5110,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &4136691811806843408
 GameObject:
@@ -5416,7 +5463,7 @@ GameObject:
   - component: {fileID: 5732036565089806404}
   - component: {fileID: 2990517372592796535}
   m_Layer: 6
-  m_Name: MouseListener
+  m_Name: AttackListener
   m_TagString: MouseListener
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

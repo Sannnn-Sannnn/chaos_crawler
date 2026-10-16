@@ -5,16 +5,10 @@ using UnityEngine.InputSystem;
 public class MouseListener : MonoBehaviour
 {
   public event Action<int> OnWheelScroll;
-  
+
   [SerializeField] private Camera mainCamera;
   [SerializeField] private RectTransform crosshair;
   [SerializeField] private InputActionReference mousePosition;
-  [SerializeField] private InputActionReference mouseScroll;
-  
-  [SerializeField] private float mouseScrollCooldown;
-
-  [SerializeField] private bool inverted;
-   private float _mouseScrollStart;
 
   private Vector2 _mouseScreenPosition;
   private Vector2 _mouseWorldPosition;
@@ -25,15 +19,11 @@ public class MouseListener : MonoBehaviour
   private void OnEnable()
   {
     mousePosition.action.Enable();
-    mouseScroll.action.Enable();
-    mouseScroll.action.performed += OnScroll;
   }
 
   private void OnDisable()
   {
     mousePosition.action.Disable();
-    mouseScroll.action.Disable();
-    mousePosition.action.performed -= OnScroll;
   }
 
   public Vector2 GetAimDirection(Vector2 origin)
@@ -53,18 +43,5 @@ public class MouseListener : MonoBehaviour
     _mouseWorldPosition = mainCamera.ScreenToWorldPoint(screenPosition);
 
     crosshair.position = _mouseWorldPosition;
-  }
-  
-  private void OnScroll(InputAction.CallbackContext context)
-  {
-    Vector2 scrollValue = context.ReadValue<Vector2>();
-    var inversion = inverted ? -1 : 1;
-
-    if (Time.time - _mouseScrollStart > mouseScrollCooldown)
-    {
-      _mouseScrollStart = Time.time;
-      if (scrollValue.y > 0) OnWheelScroll?.Invoke(-1 * inversion);
-      else if (scrollValue.y < 0) OnWheelScroll?.Invoke(1 * inversion);
-    }
   }
 }

@@ -12,6 +12,7 @@ public class WeaponController : MonoBehaviour
     private InputActionReference mouseClickListener;
 
     [SerializeField] private MouseListener mouseListener;
+    [SerializeField] private WeaponChangeTracker weaponChangeListener;
 
     [Header("Hold Points")] [SerializeField]
     private Transform[] weaponSlots;
@@ -71,9 +72,10 @@ public class WeaponController : MonoBehaviour
             mouseClickListener.action.canceled += OnActionCanceled;
         }
 
-        if (mouseListener != null)
+        if (weaponChangeListener != null)
         {
-            mouseListener.OnWheelScroll += HandleWeaponChange;
+            weaponChangeListener.OnWheelScroll += HandleWheelScroll;
+            weaponChangeListener.OnNumberPressed += HandleNumberPressed;
         }
     }
 
@@ -88,7 +90,9 @@ public class WeaponController : MonoBehaviour
 
         if (mouseListener != null)
         {
-            mouseListener.OnWheelScroll -= HandleWeaponChange;
+            weaponChangeListener.OnWheelScroll -= HandleWheelScroll;
+            weaponChangeListener.OnNumberPressed -= HandleNumberPressed;
+
         }
     }
 
@@ -164,16 +168,21 @@ public class WeaponController : MonoBehaviour
 
     // Equipped weapons
     
-    private void HandleWeaponChange(int movement)
+    private void HandleWheelScroll(int movement)
     {
         if (equippedWeapons == null || equippedWeapons.Length == 0) return;
-
-        weaponRenderer.SetSelected(currentWeaponSlot);
         
         int totalSlots = equippedWeapons.Length;
         currentWeaponSlot = (currentWeaponSlot + movement) % totalSlots;
         if (currentWeaponSlot < 0) currentWeaponSlot += totalSlots;
         
+        weaponRenderer.SetSelected(currentWeaponSlot);
+    }
+
+    private void HandleNumberPressed(int number)
+    {
+        if (equippedWeapons == null || equippedWeapons.Length == 0) return;
+        currentWeaponSlot = number;
         weaponRenderer.SetSelected(currentWeaponSlot);
     }
 

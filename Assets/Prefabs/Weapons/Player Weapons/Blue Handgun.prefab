@@ -177,7 +177,7 @@ MonoBehaviour:
   damage: 15
   cooldown: 0.25
   speed: 20
-  deviation: 5
+  deviation: 1
 --- !u!61 &1077325727847577008
 BoxCollider2D:
   m_ObjectHideFlags: 0
