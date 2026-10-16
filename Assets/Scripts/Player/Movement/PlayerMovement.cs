@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] private float dashDuration;
 
   private int _maxStamina = 100;
-  [SerializeField] private int _stamina;
-  [SerializeField] private int staminaRecovery;
+  [SerializeField] private float _stamina;
+  [SerializeField] private float staminaRecovery;
   
   private bool _isDashing = false;
   private bool _canDash = true;
@@ -102,5 +102,6 @@ public class PlayerMovement : MonoBehaviour
   }
 
   public int MaxStamina() => _maxStamina;
-  public int Stamina() => _stamina;
+  public float Stamina() => _stamina;
+  public bool IsDashing() => _isDashing;
 }

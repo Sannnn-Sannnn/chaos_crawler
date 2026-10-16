@@ -2556,6 +2556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealth
   maxHealth: 10
   currentHealth: 10
+  isInmuneWhileDashing: 1
 --- !u!58 &1237029223
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5068,7 +5069,7 @@ MonoBehaviour:
   dashSpeed: 80
   dashDuration: 0.1
   _stamina: 0
-  staminaRecovery: 1
+  staminaRecovery: 0.25
 --- !u!1 &3605922336757852602
 GameObject:
   m_ObjectHideFlags: 0
@@ -5479,8 +5480,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7711838900107876526}
   - component: {fileID: 3869403541479399278}
-  - component: {fileID: 3032059465748294609}
   - component: {fileID: 5997932713913654192}
+  - component: {fileID: 3032059465748294609}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player

@@ -8,6 +8,7 @@ namespace Player
   {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
+    [SerializeField] private bool isInmuneWhileDashing;
 
     private GameManager _gameManager;
     private PlayerMovement _playerMovement;
@@ -39,6 +40,8 @@ namespace Player
 
     public void Damage(int damage)
     {
+      var isDashing = _playerMovement.IsDashing();
+      if (isDashing && isInmuneWhileDashing) return;
       currentHealth -= damage < currentHealth ? damage : currentHealth;
       if (currentHealth <= 0)
       {
