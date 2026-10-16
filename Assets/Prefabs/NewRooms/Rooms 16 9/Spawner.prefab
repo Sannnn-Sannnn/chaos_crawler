@@ -113,3 +113,11 @@ MonoBehaviour:
   roomHeight: 18
   roomWidth: 32
   minDoorDistance: 4
+  obstacleLayers:
+  - serializedVersion: 2
+    m_Bits: 128
+  - serializedVersion: 2
+    m_Bits: 65536
+  - serializedVersion: 2
+    m_Bits: 131072
+  enemyCheckRadius: 0.7

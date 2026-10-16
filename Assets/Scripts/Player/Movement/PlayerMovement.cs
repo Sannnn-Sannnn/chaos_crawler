@@ -58,11 +58,7 @@ public class PlayerMovement : MonoBehaviour
   private void FixedUpdate()
   {
     if (!_isAlive) return;
-    if (_isDashing)
-    {
-      _rb.MovePosition(_rb.position + _dashDirection * dashSpeed * Time.fixedDeltaTime);
-    }
-    else
+    if (!_isDashing)
     {
       _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime);
       if (_stamina < _maxStamina)
@@ -90,10 +86,18 @@ public class PlayerMovement : MonoBehaviour
 
   private IEnumerator DashRoutine()
   {
-    // Start Dash
     _isDashing = true;
     _stamina -= _maxStamina / 3;
-    yield return new WaitForSeconds(dashDuration);
+
+    float elapsedTime = 0f;
+    
+    while (elapsedTime < dashDuration)
+    {
+      _rb.linearVelocity = _dashDirection.normalized * dashSpeed; 
+      elapsedTime += Time.fixedDeltaTime;
+      yield return new WaitForFixedUpdate();
+    }
+    _rb.linearVelocity = Vector2.zero;
     _isDashing = false;
   }
 
