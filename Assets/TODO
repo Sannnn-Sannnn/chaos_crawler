@@ -9,7 +9,6 @@ Main changes:
 * Change spare weapon and equip again when out of weapons
 * Add stamina consumption
 * Add dash in mouse direction 
-* Add numeric HP indicator
 * Add custom font
 * Upgrade Main menu and pause/death screens
 * Add weapon change on numeric buttons
@@ -45,3 +44,4 @@ Post MVP:
 * Added dash
 * Upgraded UI
 * Fix weapon tilting
+* Add numeric HP indicator

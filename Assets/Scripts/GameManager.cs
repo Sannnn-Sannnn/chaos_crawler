@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     private DungeonGenerator dungeonGenerator;
     
     [Header("Stats")] [SerializeField] private int currentFloor;
+    [SerializeField] private int healthIncrement;
+    
+    private PlayerHealth _playerHealth;
 
     private void Awake()
     {
@@ -23,8 +26,8 @@ public class GameManager : MonoBehaviour
         dungeonGenerator.RegenerateDungeon();
         ResetPlayerPosition();
         
-        var playerHealth = GameObject.FindWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
-        playerHealth.Restart();
+        _playerHealth = GameObject.FindWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
+        _playerHealth.Restart();
     }
     
     // Floor navigation
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         currentFloor++;
         ResetPlayerPosition();
+        _playerHealth.IncreaseMaxHealth(healthIncrement);
         dungeonGenerator.RegenerateDungeon();
     }
 
