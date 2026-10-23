@@ -24,16 +24,20 @@ namespace Dungeon
 
     [SerializeField] private int roomSizeX;
     [SerializeField] private int roomSizeY;
-    
+
     [SerializeField] private bool branchFromStart;
     [SerializeField] private bool branchFromEnd;
-    
-    [Header("Room Prefabs")]
-    [SerializeField] private GameObject[] roomPrefabs;
+
+    [Header("Room Prefabs")] [SerializeField]
+    private GameObject[] roomPrefabs;
+
     [SerializeField] private GameObject startRoom;
     [SerializeField] private GameObject endRoom;
-    
+
     private Dictionary<Vector2Int, GameObject> _rooms = new();
+
+    [Header("Corridors")] [SerializeField] private GameObject horizontalCorridorPrefab;
+    [SerializeField] private GameObject verticalCorridorPrefab;
 
     private void GenerateDungeon()
     {
@@ -48,7 +52,8 @@ namespace Dungeon
         if (!room.Equals(Vector2Int.zero) && !room.Equals(dungeon.Item3))
         {
           var roomPref = roomPrefabs[Random.Range(0, roomPrefabs.Length)];
-          var roomObject = Instantiate(roomPref, new Vector3(room.x * roomSizeX, room.y * roomSizeY, 0), Quaternion.identity);
+          var roomObject = Instantiate(roomPref, new Vector3(room.x * roomSizeX, room.y * roomSizeY, 0),
+            Quaternion.identity);
           _rooms.Add(room, roomObject);
         }
       }
@@ -65,9 +70,9 @@ namespace Dungeon
       {
         var room1 = corridor.Item1;
         var room2 = corridor.Item2;
-        var x = (float)(room1.x + room2.x) / 2;
-        var y = (float)(room1.y + room2.y) / 2;
-        
+        var x = (float)(room1.x + room2.x) / 2 * roomSizeX;
+        var y = (float)(room1.y + room2.y) / 2 * roomSizeY;
+
         // Update doors
         // Case: vertical corridor
         if (room1.x == room2.x)
@@ -84,6 +89,8 @@ namespace Dungeon
             _rooms[room1].GetComponent<Room>().SetDoor("south", true);
             _rooms[room2].GetComponent<Room>().SetDoor("north", true);
           }
+
+          Instantiate(verticalCorridorPrefab, new Vector3(x, y, 0), Quaternion.identity);
         }
         // Case: horizontal corridor
         else
@@ -100,6 +107,8 @@ namespace Dungeon
             _rooms[room1].GetComponent<Room>().SetDoor("west", true);
             _rooms[room2].GetComponent<Room>().SetDoor("east", true);
           }
+
+          Instantiate(horizontalCorridorPrefab, new Vector3(x, y, 0), Quaternion.identity);
         }
       }
     }
@@ -112,18 +121,19 @@ namespace Dungeon
         var weaponComponent = weapon.GetComponent<WeaponBase>();
         if (!weaponComponent.IsEquipped()) Destroy(weapon);
       }
-      
+
       DestroyAll(GameObject.FindGameObjectsWithTag("PlayerAttack"));
       DestroyAll(GameObject.FindGameObjectsWithTag("EnemyBullet"));
       DestroyAll(GameObject.FindGameObjectsWithTag("LifeRecovery"));
       DestroyAll(GameObject.FindGameObjectsWithTag("Enemy"));
-      
+
       foreach (Vector2Int room in _rooms.Keys)
       {
         Destroy(_rooms[room]);
       }
+
       _rooms.Clear();
-      
+
       GenerateDungeon();
     }
 

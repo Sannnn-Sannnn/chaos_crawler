@@ -1723,6 +1723,8 @@ MonoBehaviour:
   - {fileID: 6525627106680853277, guid: db5ec3ff959660a3cb5e69640586056e, type: 3}
   startRoom: {fileID: 6525627106680853277, guid: 0454ffb8b5758680aa6bdc92291a6ed0, type: 3}
   endRoom: {fileID: 6525627106680853277, guid: 10ff8c6db5998936ca7915fe8a9a7f22, type: 3}
+  horizontalCorridorPrefab: {fileID: 6525627106680853277, guid: cad9d7187cb85ccd5815c0eb1dea9a40, type: 3}
+  verticalCorridorPrefab: {fileID: 6525627106680853277, guid: 009ff25d4cc4e8b528a43b2c32036e61, type: 3}
 --- !u!1001 &864125050
 PrefabInstance:
   m_ObjectHideFlags: 0

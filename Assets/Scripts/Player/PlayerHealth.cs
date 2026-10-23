@@ -17,7 +17,7 @@ namespace Player
     {
       currentHealth = maxHealth;
       _gameManager = FindAnyObjectByType<GameManager>();
-      _playerMovement = GetComponent<PlayerMovement>();
+      _playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
     public Vector2? Position()

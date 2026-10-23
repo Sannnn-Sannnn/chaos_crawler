@@ -1,19 +1,37 @@
 fileFormatVersion: 2
-guid: 39f2f1830256492fd87b0038d07acc74
+guid: b9620c841871abc04bee4b7557e5219d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3200004798483727998
-    second: weapon_slot_0
+      213: 5707218116961789024
+    second: ui_0
   - first:
-      213: 3381388074214633190
-    second: weapon_slot_1
+      213: 3556181715638617739
+    second: ui_1
   - first:
-      213: -2685044612307580658
-    second: weapon_slot_2
+      213: -8816031292267695619
+    second: ui_2
   - first:
-      213: -3258676322925768511
-    second: weapon_slot_3
+      213: 7263181891274304025
+    second: ui_3
+  - first:
+      213: -7975249404588759376
+    second: ui_4
+  - first:
+      213: -9005941153719796207
+    second: ui_5
+  - first:
+      213: 2163036573998151787
+    second: ui_6
+  - first:
+      213: 8599436577718238185
+    second: ui_7
+  - first:
+      213: -9080700020481880845
+    second: ui_8
+  - first:
+      213: -6774437969098921397
+    second: ui_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,10 +75,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,10 +99,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,101 +140,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blue_small
+      name: healthbar_frame
       rect:
         serializedVersion: 2
-        x: 16
-        y: 46
-        width: 2
-        height: 2
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 289f4d2179c4793d0800000000000000
-      internalID: -3200004798483727998
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: red_small
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 41
-        width: 2
-        height: 2
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6ee2e43c98a1dee20800000000000000
-      internalID: 3381388074214633190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: background
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e09845da62eccbad0800000000000000
-      internalID: -2685044612307580658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blue
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 43
-        width: 6
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c09806462bd6c2d0800000000000000
-      internalID: -3258676322925768511
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: yellow_small
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 46
-        width: 2
-        height: 2
+        x: 90
+        y: 2290
+        width: 4027
+        height: 820
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63e89b0927879155e82cb39f8ee837d9
-      internalID: 509495874
+      spriteID: 7a82bb33998e573399dbafe23ce323f1
+      internalID: 5707218116961789024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: red
+      name: healthbar_background
       rect:
         serializedVersion: 2
-        x: 18
-        y: 38
-        width: 6
-        height: 5
+        x: 109
+        y: 1610
+        width: 973
+        height: 629
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +177,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4b67e1c8e143af50a3dfa873961aa97
-      internalID: -728159363
+      spriteID: 293d625ff8cdb896292b6629bf24c2c1
+      internalID: -1302122132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: frame
+      name: healthbar
       rect:
         serializedVersion: 2
-        x: 32
-        y: 16
-        width: 32
-        height: 32
+        x: 1102
+        y: 2012
+        width: 3367
+        height: 188
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,20 +199,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3b5bf709967a01e7bfd3a6a72958e47
-      internalID: 59678946
+      spriteID: 9dd59f340d30430c29608ca7dfde6639
+      internalID: 7263181891274304025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: yellow
+      name: stamina_bar
       rect:
         serializedVersion: 2
-        x: 26
-        y: 43
-        width: 6
-        height: 5
+        x: 1199
+        y: 1915
+        width: 2469
+        height: 85
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 206f719a703eb1b14bdd9f3ad098ee59
-      internalID: -871547036
+      spriteID: ddd78fa11d7d2ba7382b4704576b9d4e
+      internalID: -7975249404588759376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: counter
+      name: deco_samll
       rect:
         serializedVersion: 2
-        x: 32
-        y: 6
-        width: 10
-        height: 10
+        x: 1160
+        y: 1758
+        width: 82
+        height: 82
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -313,8 +243,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bbd256b098cad13d8e248039c8535ae
-      internalID: -1067858537
+      spriteID: 6a9261d3a8d76f1dd9d23f4386f50bd1
+      internalID: -597280355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 1711
+        width: 183
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16e17619aeb3f13f19f7d2e536029f1c
+      internalID: 2163036573998151787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_slot_fram
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 688
+        width: 1020
+        height: 824
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2ab4c862bc1e02659438e7537cfa1f5
+      internalID: 628611855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_slot_background
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 1012
+        width: 930
+        height: 629
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7271df691cbf1ea19e2169896f76c7d
+      internalID: 534406426
       vertices: []
       indices: 
       edges: []
@@ -323,7 +319,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e63d47b54d18062599a13e9a41856936
+    spriteID: 9edccbbf4f2dbc4379d26dd2b4c0baf1
     internalID: 0
     vertices: []
     indices: 
@@ -331,17 +327,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      background: -2685044612307580658
-      blue: -3258676322925768511
-      blue_small: -3200004798483727998
-      counter: -1067858537
-      frame: 59678946
-      red: -728159363
-      red_small: 3381388074214633190
-      yellow: -871547036
-      yellow_small: 509495874
+      deco: 2163036573998151787
+      deco_samll: -597280355
+      healthbar: 7263181891274304025
+      healthbar_background: -1302122132
+      healthbar_frame: 5707218116961789024
+      stamina_bar: -7975249404588759376
+      ui_2: -8816031292267695619
+      ui_8: -9080700020481880845
+      weapon_slot_background: -6774437969098921397
+      weapon_slot_fram: 628611855
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
