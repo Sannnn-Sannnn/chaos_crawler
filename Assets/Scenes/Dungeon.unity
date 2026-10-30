@@ -1666,7 +1666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856934601}
   - component: {fileID: 856934602}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: DungeonGenerator
   m_TagString: DungeonGenerator
   m_Icon: {fileID: 0}
@@ -3299,7 +3299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1413248869}
   - component: {fileID: 1413248870}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: GameManager
   m_TagString: GameManager
   m_Icon: {fileID: 0}

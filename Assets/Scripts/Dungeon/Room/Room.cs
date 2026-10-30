@@ -24,7 +24,7 @@ namespace Dungeon
       }
       else
       {
-        Debug.Log($"No doors found at ({transform.position.x}, {transform.position.y})");
+        // Debug.Log($"No doors found at ({transform.position.x}, {transform.position.y})");
       }
     }
 

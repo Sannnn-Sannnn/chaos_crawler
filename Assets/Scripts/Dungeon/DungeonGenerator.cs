@@ -35,7 +35,7 @@ namespace Dungeon
     [SerializeField] private GameObject endRoom;
 
     private Dictionary<Vector2Int, GameObject> _rooms = new();
-    private Dictionary<Vector2Int, GameObject> _corridors = new();
+    private Dictionary<Vector2, GameObject> _corridors = new();
 
     [Header("Corridors")] [SerializeField] private GameObject horizontalCorridorPrefab;
     [SerializeField] private GameObject verticalCorridorPrefab;
@@ -73,6 +73,11 @@ namespace Dungeon
         var room2 = corridor.Item2;
         var x = (room1.x + room2.x) / 2 * roomSizeX;
         var y = (room1.y + room2.y) / 2 * roomSizeY;
+        
+        if (_corridors.ContainsKey(new Vector2(x, y)))
+        {
+          continue;
+        }
 
         // Update doors
         // Case: vertical corridor
@@ -92,7 +97,7 @@ namespace Dungeon
           }
 
           var corridorInstance = Instantiate(verticalCorridorPrefab, new Vector3(x, y, 0), Quaternion.identity);
-          _corridors.Add(new Vector2Int(x, y), corridorInstance);
+          _corridors.TryAdd(new Vector2(x, y), corridorInstance);
         }
         // Case: horizontal corridor
         else
@@ -111,7 +116,7 @@ namespace Dungeon
           }
 
           var corridorInstance = Instantiate(horizontalCorridorPrefab, new Vector3(x, y, 0), Quaternion.identity);
-          _corridors.Add(new Vector2Int(x, y), corridorInstance);
+          _corridors.Add(new Vector2(x, y), corridorInstance);
         }
       }
     }
@@ -135,12 +140,13 @@ namespace Dungeon
         Destroy(_rooms[room]);
       }
       
-      foreach (Vector2Int corridors in _corridors.Keys)
+      foreach (Vector2 corridors in _corridors.Keys)
       {
-        Destroy(_rooms[corridors]);
+        Destroy(_corridors[corridors]);
       }
 
       _rooms.Clear();
+      _corridors.Clear();
 
       GenerateDungeon();
     }
