@@ -22,6 +22,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private int currentWeaponSlot = 0;
     [SerializeField] private int fixedWeaponSlot = 0;
 
+    private WeaponBase _storedWeapon = null;
+    
     private IInteractable _currentInteractable;
     private bool _isHoldingClick = false;
 
@@ -103,6 +105,12 @@ public class WeaponController : MonoBehaviour
         if (_isHoldingClick)
         {
             ShootAllWeapons();
+        }
+
+        if (equippedWeapons[fixedWeaponSlot] == null && _storedWeapon != null)
+        {
+            EquipWeapon(_storedWeapon);
+            _storedWeapon = null;
         }
     }
     
@@ -188,25 +196,29 @@ public class WeaponController : MonoBehaviour
 
     public void EquipWeapon(WeaponBase newWeapon)
     {
-        if (newWeapon == null || equippedWeapons == null || equippedWeapons.Length == 0) return;
-
         CheckNextSlot();
-        weaponRenderer.SetSelected(currentWeaponSlot);
+        EquipWeapon(newWeapon, currentWeaponSlot);
+    }
+    
+    private void EquipWeapon(WeaponBase newWeapon, int weaponIndex) {
+    if (newWeapon == null || equippedWeapons == null || equippedWeapons.Length == 0) return;
+    
+        weaponRenderer.SetSelected(weaponIndex);
 
-    Transform targetSlot = (weaponSlots != null && currentWeaponSlot < weaponSlots.Length)
-            ? weaponSlots[currentWeaponSlot]
+        Transform targetSlot = (weaponSlots != null && weaponIndex < weaponSlots.Length)
+            ? weaponSlots[weaponIndex]
             : transform;
 
-        if (equippedWeapons[currentWeaponSlot] != null)
+        if (equippedWeapons[weaponIndex] != null)
         {
-            equippedWeapons[currentWeaponSlot].SetDropped();
+            equippedWeapons[weaponIndex].SetDropped();
         }
 
-        equippedWeapons[currentWeaponSlot] = newWeapon;
-        equippedWeapons[currentWeaponSlot].SetEquipped(targetSlot);
+        equippedWeapons[weaponIndex] = newWeapon;
+        equippedWeapons[weaponIndex].SetEquipped(targetSlot);
         _currentInteractable = null;
 
-        weaponRenderer.RenderWeapon(currentWeaponSlot, newWeapon);
+        weaponRenderer.RenderWeapon(weaponIndex, newWeapon);
     }
 
     private void CheckNextSlot()
@@ -217,22 +229,30 @@ public class WeaponController : MonoBehaviour
         }
 
         // Case 1: empty slot 
-        if (equippedWeapons[currentWeaponSlot] == null) return;
-        // Case 2: on fixed slot
-        if (currentWeaponSlot == fixedWeaponSlot)
+        if (equippedWeapons[currentWeaponSlot] == null)
         {
-            currentWeaponSlot++;
-            CheckNextSlot();
+            Debug.Log("Case 1");
             return;
         }
-        // Case 3: on common occupied slot with empty slots
+        // Case 2: on common occupied slot with empty slots
         for (int i = 0; i < equippedWeapons.Length; i++)
         {
             var weapon = equippedWeapons[i];
             if (weapon == null)
             {
                 currentWeaponSlot = i;
+                Debug.Log("Case 2 - " + i);
                 return;
+            }
+        }
+        // Case 3: on fixed slot, with no empty slots
+        if (currentWeaponSlot == fixedWeaponSlot)
+        {
+            if (_storedWeapon == null)
+            {
+                _storedWeapon = equippedWeapons[currentWeaponSlot];
+                equippedWeapons[currentWeaponSlot] = null;
+                Debug.Log("Case 3");
             }
         }
         // Case 4: on common occupied slot with no empty slots

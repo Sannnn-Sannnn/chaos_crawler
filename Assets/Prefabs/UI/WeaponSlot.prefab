@@ -545,8 +545,8 @@ MonoBehaviour:
   weaponSprite: {fileID: 3059083067481694267}
   text: {fileID: 873231939792318072}
   defaultColour: {r: 1, g: 1, b: 1, a: 0.3529412}
-  selectedColour: {r: 0, g: 1, b: 1, a: 1}
-  fixedColour: {r: 1, g: 1, b: 0, a: 1}
+  selectedColour: {r: 1, g: 1, b: 0, a: 1}
+  fixedColour: {r: 0, g: 1, b: 1, a: 1}
   statusIndicator:
   - {fileID: 8608613655048836403}
   - {fileID: 2008502530513966408}

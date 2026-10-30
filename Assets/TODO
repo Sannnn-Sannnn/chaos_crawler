@@ -3,10 +3,10 @@ Main changes:
 * Implement PlayerWeaponSpawner (S.O. -> modifiers -> spawn)
 * Implement EnemySpawner (S.O. -> modifiers -> spawn)
 * Implement ConsumableSpawner (S.O. -> modifiers -> spawn)
-* Change spare weapon and equip again when out of weapons
 * Add dash in mouse direction 
 * Add custom font
 * Upgrade Main menu and pause/death screens
+* Destroy corridors on recreation
 
 Other changes:
 * Add weapon highlight for pickup
@@ -42,3 +42,4 @@ Post MVP:
 * Add transitions between floors
 * Dash can pass through walls -> shouldn't
 * Add weapon change on numeric buttons
+* Change spare weapon and equip again when out of weapons

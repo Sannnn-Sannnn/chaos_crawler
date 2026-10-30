@@ -106,8 +106,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dungeon.EnemySpawner
   enemyPrefabs:
-  - {fileID: 908729971913051575, guid: e3af64830e93f49d7b23fc0bb3ba968b, type: 3}
-  - {fileID: 908729971913051575, guid: f7a3754a9786b04788b608ef872f57b3, type: 3}
+  - {fileID: 908729971913051575, guid: e9110d37fc8e3685c971cf783ef41e19, type: 3}
+  - {fileID: 908729971913051575, guid: 51e65c807387a2edda384669f2cbe4bc, type: 3}
+  - {fileID: 908729971913051575, guid: c3a9c921aa0e48a54aaaefb14c63e55e, type: 3}
+  - {fileID: 908729971913051575, guid: 2c6aa20728994e85ea74be9728e961c2, type: 3}
+  - {fileID: 908729971913051575, guid: f19a39fb2087ac996a860afcb8499760, type: 3}
+  - {fileID: 908729971913051575, guid: d830a0e555e30cc818b28a0a20ab18ee, type: 3}
+  - {fileID: 908729971913051575, guid: 3bf0ac176fc095920b3942e40b99afdd, type: 3}
+  - {fileID: 908729971913051575, guid: 7a1cfb93a0e813275b4487faba9ad814, type: 3}
   minEnemies: 5
   maxEnemies: 15
   roomHeight: 18
