@@ -73,7 +73,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.6
 --- !u!50 &1174674227119718699
 Rigidbody2D:
   serializedVersion: 5
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy.SimpleChaserEnemyBehaviour
   speed: -5
+  isLookingRight: 1
 --- !u!114 &2532136329275588665
 MonoBehaviour:
   m_ObjectHideFlags: 0

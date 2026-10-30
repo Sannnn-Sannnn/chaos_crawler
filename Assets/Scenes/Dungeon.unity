@@ -2559,6 +2559,8 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 10
   isInmuneWhileDashing: 1
+  animator: {fileID: 5511744406231437193}
+  deathAnimationDuration: 1
 --- !u!58 &1237029223
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5067,6 +5069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 15
   moveAction: {fileID: -3903710420828898550, guid: a5269ea1f2ffc3d439d926e82d5ca6c8, type: 3}
+  isLookingRight: 1
   dashAction: {fileID: 5113511478827074656, guid: a5269ea1f2ffc3d439d926e82d5ca6c8, type: 3}
   dashSpeed: 80
   dashDuration: 0.1
@@ -5125,6 +5128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4797410498658180294}
   - component: {fileID: 5511744406231437192}
+  - component: {fileID: 5511744406231437193}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -5325,6 +5329,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!95 &5511744406231437193
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136691811806843408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3cadb2fabdeb80b17b2d67329b10cc7f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &5732036565089806404
 Transform:
   m_ObjectHideFlags: 0

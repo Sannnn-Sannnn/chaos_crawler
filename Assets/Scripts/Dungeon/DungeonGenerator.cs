@@ -71,8 +71,8 @@ namespace Dungeon
       {
         var room1 = corridor.Item1;
         var room2 = corridor.Item2;
-        var x = (room1.x + room2.x) / 2 * roomSizeX;
-        var y = (room1.y + room2.y) / 2 * roomSizeY;
+        var x = (float) (room1.x + room2.x) / 2 * roomSizeX;
+        var y = (float) (room1.y + room2.y) / 2 * roomSizeY;
         
         if (_corridors.ContainsKey(new Vector2(x, y)))
         {

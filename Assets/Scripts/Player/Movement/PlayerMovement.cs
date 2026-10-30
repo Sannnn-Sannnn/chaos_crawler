@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
   [Header("Basic movement")]
   [SerializeField] private float speed = 5f;
   [SerializeField] private InputActionReference moveAction;
+  [SerializeField] private bool isLookingRight = true;
   
   [Header("Dash")]
   [SerializeField] private InputActionReference dashAction;
@@ -28,10 +29,15 @@ public class PlayerMovement : MonoBehaviour
   private Vector2 _movement;
   private Vector2 _dashDirection;
 
+  private SpriteRenderer _spriteRenderer;
+  private Animator _animator;
+
   private void Awake()
   {
     _rb = GetComponent<Rigidbody2D>();
     _stamina = _maxStamina;
+    _animator = GetComponentInChildren<Animator>();
+    _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
   }
 
   private void OnEnable()
@@ -48,18 +54,16 @@ public class PlayerMovement : MonoBehaviour
     dashAction.action.performed -= HandleDash;
   }
 
-  private void Update()
-  {
-    if (_isDashing || !_isAlive) return;
-    _movement = moveAction.action.ReadValue<Vector2>().normalized;
-    _dashDirection = _movement == Vector2.zero ? _dashDirection : _movement;
-  }
-
   private void FixedUpdate()
   {
     if (!_isAlive) return;
     if (!_isDashing)
     {
+      if (_isDashing || !_isAlive) return;
+      _movement = moveAction.action.ReadValue<Vector2>().normalized;
+      _dashDirection = _movement == Vector2.zero ? _dashDirection : _movement;
+      _animator.SetBool("isMoving", _movement != Vector2.zero);
+      FlipSprite(_movement.x);
       _rb.MovePosition(_rb.position + _movement * speed * Time.fixedDeltaTime);
       if (_stamina < _maxStamina)
       {
@@ -88,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
   {
     _isDashing = true;
     _stamina -= _maxStamina / 3;
+    _animator.SetBool("isMoving", true);
 
     float elapsedTime = 0f;
     
@@ -99,7 +104,23 @@ public class PlayerMovement : MonoBehaviour
     }
     _rb.linearVelocity = Vector2.zero;
     _isDashing = false;
+    _animator.SetBool("isMoving", false);
   }
+
+  private void FlipSprite(float x)
+  {
+    if (x > 0 && !isLookingRight)
+    {
+      isLookingRight = true;
+      _spriteRenderer.flipX = false;
+    }
+    else if (x < 0 && isLookingRight)
+    {
+      isLookingRight = false;
+      _spriteRenderer.flipX = true;
+    }
+  }
+
 
   public int MaxStamina() => _maxStamina;
   public float Stamina() => _stamina;

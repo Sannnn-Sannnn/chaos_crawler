@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ namespace Player
 
     private GameManager _gameManager;
     private PlayerMovement _playerMovement;
+
+    [SerializeField] private Animator animator;
+    [SerializeField] private float deathAnimationDuration;
 
     private void Awake()
     {
@@ -45,7 +49,7 @@ namespace Player
       currentHealth -= damage < currentHealth ? damage : currentHealth;
       if (currentHealth <= 0)
       {
-        Die();
+        StartCoroutine(Die());
       }
     }
 
@@ -75,8 +79,15 @@ namespace Player
       }
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
+      animator.SetBool("isAlive", false);
+      var wait = true;
+      while (wait)
+      {
+        yield return new WaitForSeconds(deathAnimationDuration);
+        wait = false;
+      }
       _gameManager.ShowDeath();
     }
   }

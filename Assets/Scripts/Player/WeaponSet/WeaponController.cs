@@ -45,7 +45,6 @@ public class WeaponController : MonoBehaviour
 
         if (equippedWeapons.Length < 2 && fixedWeaponSlot >= 0)
         {
-            Debug.Log("There must be at least 2 weapon slot or no fixed weapon slot");
             Destroy(gameObject);
         }
         

@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int healthIncrement;
     
     private PlayerHealth _playerHealth;
-    private GameObject _playerHitBox;
 
     private void Awake()
     {
@@ -27,28 +26,9 @@ public class GameManager : MonoBehaviour
         dungeonGenerator.RegenerateDungeon();
         ResetPlayerPosition();
         
-        // _playerHealth = GameObject.FindWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
-        _playerHitBox = GameObject.FindWithTag("PlayerHitBox");
-        Debug.Log("PlayerHitBox: " + _playerHitBox);
-        _playerHealth = _playerHitBox.GetComponent<PlayerHealth>();
-        Debug.Log("PlayerHealth: " + _playerHealth);
+        var playerHitBox = GameObject.FindWithTag("PlayerHitBox");
+        _playerHealth = playerHitBox.GetComponent<PlayerHealth>();
         _playerHealth.Restart();
-    }
-
-    private void FixedUpdate()
-    {
-        if (_playerHitBox == null)
-        {
-            Debug.Log("PlayerHitBox is null ");
-        }
-        else if (_playerHealth == null)
-        {
-            Debug.Log("PlayerHealth is null ");
-        }
-        else
-        {
-            Debug.Log("ALL OK");
-        }
     }
 
     // Floor navigation
@@ -62,7 +42,6 @@ public class GameManager : MonoBehaviour
     {
         currentFloor++;
         ResetPlayerPosition();
-        Debug.Log("PlayerHealth: " + _playerHealth);
         _playerHealth.IncreaseMaxHealth(healthIncrement);
         dungeonGenerator.RegenerateDungeon();
     }
