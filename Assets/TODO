@@ -1,3 +1,9 @@
+MOST URGENT CHANGES:
+* Weapon sprites
+* Enemies animations
+* Audio
+* Menú
+
 Main changes:
 * Implement cannon
 * Implement PlayerWeaponSpawner (S.O. -> modifiers -> spawn)
@@ -43,3 +49,4 @@ Post MVP:
 * Dash can pass through walls -> shouldn't
 * Add weapon change on numeric buttons
 * Change spare weapon and equip again when out of weapons
+* Random enemy spawn

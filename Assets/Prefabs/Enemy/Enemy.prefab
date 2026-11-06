@@ -54,7 +54,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -93,13 +93,13 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &7261135397035116662
 MonoBehaviour:
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy.SimpleChaserEnemyBehaviour
   speed: 5
+  isLookingRight: 1
 --- !u!114 &2532136329275588665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 10
   health: 10
+  healthIncrement: 0
 --- !u!114 &6640428703452444780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +145,7 @@ MonoBehaviour:
   attackprefab: {fileID: 1392970841949781796, guid: dd6d7fd4ffe1a475ebf0fb3ccab0d1a6, type: 3}
   damage: 2
   cooldown: 2
+  damageIncrement: 0
 --- !u!114 &559815428157311357
 MonoBehaviour:
   m_ObjectHideFlags: 0

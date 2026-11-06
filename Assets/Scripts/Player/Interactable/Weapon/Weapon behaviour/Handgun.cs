@@ -9,9 +9,21 @@ namespace Weapon
 
     [Header("Stats")]
     [SerializeField] private int damage = 10;
+    [SerializeField] private float damageIncrement = 2f;
     [SerializeField] private float cooldown = 0.2f;
     [SerializeField] private float speed = 15f;
     [SerializeField] private float deviation = 0f;
+    
+    private GameManager _gameManager;
+
+    protected override void Awake()
+    {
+      base.Awake();
+      
+      _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+      var floow = _gameManager.CurrentFloor();
+      damage += (floow - 1) * (int)damageIncrement;
+    }
 
     public override void Shoot(Vector2 aimDirection)
     {

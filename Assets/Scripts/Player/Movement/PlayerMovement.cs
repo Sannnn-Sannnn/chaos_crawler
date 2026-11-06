@@ -1,13 +1,11 @@
 using System.Collections;
 using Dungeon;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-  
-  private bool _isAlive = true;
-  
   [Header("Basic movement")]
   [SerializeField] private float speed = 5f;
   [SerializeField] private InputActionReference moveAction;
@@ -31,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
   private SpriteRenderer _spriteRenderer;
   private Animator _animator;
+  
+  private PlayerHealth  _playerHealth;
 
   private void Awake()
   {
@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     _stamina = _maxStamina;
     _animator = GetComponentInChildren<Animator>();
     _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    _playerHealth = GameObject.FindGameObjectWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
   }
 
   private void OnEnable()
@@ -56,10 +57,9 @@ public class PlayerMovement : MonoBehaviour
 
   private void FixedUpdate()
   {
-    if (!_isAlive) return;
+    if (_playerHealth.Health() == 0) return;
     if (!_isDashing)
     {
-      if (_isDashing || !_isAlive) return;
       _movement = moveAction.action.ReadValue<Vector2>().normalized;
       _dashDirection = _movement == Vector2.zero ? _dashDirection : _movement;
       _animator.SetBool("isMoving", _movement != Vector2.zero);
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
   private void HandleDash(InputAction.CallbackContext ctx)
   {
-    if (_isDashing || !_isAlive) return;
+    if (_isDashing || _playerHealth.Health() == 0) return;
     if (_stamina < _maxStamina / 3) return;
     StartCoroutine(DashRoutine());
   }

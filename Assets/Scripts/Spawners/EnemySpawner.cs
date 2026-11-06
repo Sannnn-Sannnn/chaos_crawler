@@ -59,7 +59,7 @@ namespace Dungeon
                 Debug.LogError("No hay prefabs de enemigos asignados en el Spawner.");
                 return;
             }
-
+            
             for (int i = 0; i < _enemyAmount; i++)
             {
                 Vector3 spawnPosition = GetRandomPosition();

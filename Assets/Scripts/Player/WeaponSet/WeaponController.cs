@@ -230,7 +230,6 @@ public class WeaponController : MonoBehaviour
         // Case 1: empty slot 
         if (equippedWeapons[currentWeaponSlot] == null)
         {
-            Debug.Log("Case 1");
             return;
         }
         // Case 2: on common occupied slot with empty slots
@@ -240,7 +239,6 @@ public class WeaponController : MonoBehaviour
             if (weapon == null)
             {
                 currentWeaponSlot = i;
-                Debug.Log("Case 2 - " + i);
                 return;
             }
         }
@@ -251,7 +249,6 @@ public class WeaponController : MonoBehaviour
             {
                 _storedWeapon = equippedWeapons[currentWeaponSlot];
                 equippedWeapons[currentWeaponSlot] = null;
-                Debug.Log("Case 3");
             }
         }
         // Case 4: on common occupied slot with no empty slots

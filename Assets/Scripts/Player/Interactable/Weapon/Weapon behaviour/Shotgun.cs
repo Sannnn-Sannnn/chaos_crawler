@@ -9,12 +9,24 @@ namespace Weapon
 
     [Header("Stats")]
     [SerializeField] private int damage = 5;
+    [SerializeField] private float damageIncrement = 0.5f;
     [SerializeField] private float cooldown = 0.8f;
     [SerializeField] private int bulletCount = 6;
     [SerializeField] private float shotAngleDeviation = 15f;
     [SerializeField] private float speed = 12f;
     [SerializeField] private float bulletSpeedDeviation = 2f;
 
+    GameManager _gameManager;
+    
+    protected override void Awake()
+    {
+      base.Awake();
+      
+      _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+      var floor = _gameManager.CurrentFloor();
+      damage += (floor - 1) * (int)damageIncrement;
+    }
+    
     public override void Shoot(Vector2 aimDirection)
     {
       if (!IsEquipped() || Time.time - LastShotTime < cooldown) return;

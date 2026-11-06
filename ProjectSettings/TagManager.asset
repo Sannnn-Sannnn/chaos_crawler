@@ -36,7 +36,7 @@ TagManager:
   - InteriorWall
   - Hole
   - GameManager
-  - 
+  - EnemyHP
   - 
   - 
   - 
@@ -70,6 +70,9 @@ TagManager:
     locked: 0
   - name: Weapons
     uniqueID: 4109640391
+    locked: 0
+  - name: EnemyHP
+    uniqueID: 1696767375
     locked: 0
   - name: UI
     uniqueID: 1350922285

@@ -6,20 +6,28 @@ namespace Enemy.Attack
 {
   public class ShooterEnemy : MonoBehaviour
   {
-    
+
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private int damage;
     [SerializeField] private float fireRate;
     private float _lastAttack = 0;
     [SerializeField] private float initialWait;
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private float damageIncrement;
 
     private PlayerHealth _playerHealth;
+    private GameManager _gameManager;
+
 
     private void Awake()
     {
+      _gameManager = FindAnyObjectByType<GameManager>();
+      var floor = _gameManager.CurrentFloor();
+
+      damage += (floor - 1) * (int)damageIncrement;
+
       _playerHealth = GameObject.FindGameObjectWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
-      _lastAttack = Time.time + initialWait -  fireRate;
+      _lastAttack = Time.time + initialWait - fireRate;
     }
 
     private void Update()

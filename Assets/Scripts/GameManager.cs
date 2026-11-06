@@ -1,6 +1,7 @@
 using Dungeon;
 using Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("Menus")] [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private int mainMenuSceneIndex;
+    [SerializeField] private InputActionReference pauseAction;
 
     [Header("Game Objects")] [SerializeField]
     private DungeonGenerator dungeonGenerator;
@@ -17,6 +19,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int healthIncrement;
     
     private PlayerHealth _playerHealth;
+
+    private bool _isPaused = false;
+
+    private void OnEnable()
+    {
+        pauseAction.action.Enable();
+        pauseAction.action.performed += OnPausePerformed;
+    }
+
+    private void OnDisable()
+    {
+        pauseAction.action.Disable();
+        pauseAction.action.performed -= OnPausePerformed;
+    }
 
     private void Awake()
     {
@@ -76,16 +92,24 @@ public class GameManager : MonoBehaviour
     }
     
     // Pause
+    
+    private void OnPausePerformed(InputAction.CallbackContext context)
+    {
+        if (_isPaused) Resume();
+        else Pause();
+    }
 
     public void Pause()
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
+        _isPaused = true;
     }
 
     public void Resume()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+        _isPaused = false;
     }
 }
