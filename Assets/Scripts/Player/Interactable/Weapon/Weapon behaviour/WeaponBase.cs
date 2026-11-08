@@ -39,7 +39,7 @@ namespace Weapon
 
     public void Use()
     {
-      usagesLeft--;
+    usagesLeft--;
       if (usagesLeft == 0) Destroy(gameObject);
     }
 

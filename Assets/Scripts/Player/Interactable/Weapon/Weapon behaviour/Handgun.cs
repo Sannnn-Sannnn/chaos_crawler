@@ -15,6 +15,7 @@ namespace Weapon
     [SerializeField] private float deviation = 0f;
     
     private GameManager _gameManager;
+    private AudioManager _audioManager;
 
     protected override void Awake()
     {
@@ -23,6 +24,9 @@ namespace Weapon
       _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
       var floow = _gameManager.CurrentFloor();
       damage += (floow - 1) * (int)damageIncrement;
+      
+      _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
+
     }
 
     public override void Shoot(Vector2 aimDirection)
@@ -49,6 +53,8 @@ namespace Weapon
         bulletComponent.SetDirection((randomDeviation * aimDirection).normalized);
       }
       Use();
+      
+      _audioManager.PlaySfx(AudioManager.SoundId.PlayerAttack);
     }
   }
 }

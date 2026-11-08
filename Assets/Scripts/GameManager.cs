@@ -1,5 +1,6 @@
 using Dungeon;
 using Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Menus")] [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private TextMeshProUGUI gameOverText;
     [SerializeField] private int mainMenuSceneIndex;
     [SerializeField] private InputActionReference pauseAction;
 
@@ -21,6 +23,8 @@ public class GameManager : MonoBehaviour
     private PlayerHealth _playerHealth;
 
     private bool _isPaused = false;
+    private int _enemiesDefeated = 0;
+    private AudioManager _audioManager;
 
     private void OnEnable()
     {
@@ -45,6 +49,13 @@ public class GameManager : MonoBehaviour
         var playerHitBox = GameObject.FindWithTag("PlayerHitBox");
         _playerHealth = playerHitBox.GetComponent<PlayerHealth>();
         _playerHealth.Restart();
+        
+        _audioManager = GetComponent<AudioManager>();
+    }
+
+    public void Death()
+    {
+        _enemiesDefeated++;
     }
 
     // Floor navigation
@@ -73,6 +84,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowDeath()
     {
+        gameOverText.text = "Llegaste hasta el piso " + currentFloor + "\nDerrotaste " + _enemiesDefeated + " enemigos";
         gameOverMenu.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -88,6 +100,7 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuSceneIndex);
     }
     
@@ -97,6 +110,8 @@ public class GameManager : MonoBehaviour
     {
         if (_isPaused) Resume();
         else Pause();
+        _audioManager.PlaySfx(AudioManager.SoundId.ButtonClick);
+        _audioManager.SaveVolumes();
     }
 
     public void Pause()

@@ -26,6 +26,8 @@ public class WeaponController : MonoBehaviour
     
     private IInteractable _currentInteractable;
     private bool _isHoldingClick = false;
+    
+    private AudioManager _audioManager;
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class WeaponController : MonoBehaviour
                 mouseListener = listenerObject.GetComponent<MouseListener>();
             }
         }
+        _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -218,6 +221,8 @@ public class WeaponController : MonoBehaviour
         _currentInteractable = null;
 
         weaponRenderer.RenderWeapon(weaponIndex, newWeapon);
+        
+        _audioManager.PlaySfx(AudioManager.SoundId.PlayerSwapWeapon);
     }
 
     private void CheckNextSlot()

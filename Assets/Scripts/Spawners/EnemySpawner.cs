@@ -27,9 +27,12 @@ namespace Dungeon
         private Transform _spawnAnchor;
         private Vector3 _roomPositionZero;
         private DoorTrigger _trigger;
+        private GameManager _gameManager;
 
         private void Awake()
         {
+            _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            
             _trigger = GetComponent<DoorTrigger>();
             if (_trigger == null) Debug.LogError("DoorTrigger no encontrado en " + gameObject.name);
 
@@ -37,7 +40,9 @@ namespace Dungeon
             if (maxEnemies < 0) maxEnemies = 0;
             if (minEnemies > maxEnemies) maxEnemies = minEnemies;
 
-            _enemyAmount = Random.Range(minEnemies, maxEnemies + 1);
+            var minRandEnemies = minEnemies + 1 * _gameManager.CurrentFloor() - 1;
+            var maxRandEnemies = minRandEnemies + 5 > maxEnemies ? maxEnemies : minRandEnemies + 5;
+            _enemyAmount = Random.Range(minRandEnemies, maxRandEnemies + 1);
 
             _spawnAnchor = transform.parent != null ? transform.parent.Find("EnemySpawnAnchor") : null;
 
@@ -59,7 +64,7 @@ namespace Dungeon
                 Debug.LogError("No hay prefabs de enemigos asignados en el Spawner.");
                 return;
             }
-            
+
             for (int i = 0; i < _enemyAmount; i++)
             {
                 Vector3 spawnPosition = GetRandomPosition();

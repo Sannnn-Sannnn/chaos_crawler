@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
     private EnemySpawner _spawner;
     
     private GameManager _gameManager;
+    private AudioManager _audioManager;
     
     void Awake()
     {
@@ -25,6 +26,8 @@ public class EnemyHealth : MonoBehaviour
         _dropper = GetComponent<EnemyDropBehaviour>();
         
         hpIndicator =  GetComponentInChildren<TextMeshPro>();
+        
+        _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
     }
     
     void Update()
@@ -44,6 +47,7 @@ public class EnemyHealth : MonoBehaviour
     public void Damage(int damage)
     {
         health -= damage;
+        _audioManager.PlaySfx(AudioManager.SoundId.EnemyDamage);
     }
 
     private void OnDestroy()
@@ -53,9 +57,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        _gameManager.Death();
         _spawner.Down();
         _dropper.Drop();
         Destroy(gameObject);
+        _audioManager.PlaySfx(AudioManager.SoundId.EnemyDeath);
     }
     
 }

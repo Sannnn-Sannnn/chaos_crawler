@@ -17,7 +17,7 @@ namespace Enemy.Attack
 
     private PlayerHealth _playerHealth;
     private GameManager _gameManager;
-
+    private AudioManager _audioManager;
 
     private void Awake()
     {
@@ -28,6 +28,8 @@ namespace Enemy.Attack
 
       _playerHealth = GameObject.FindGameObjectWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
       _lastAttack = Time.time + initialWait - fireRate;
+      
+      _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -57,6 +59,8 @@ namespace Enemy.Attack
         bulletComponent.SetDamage(damage);
         bulletComponent.SetDirection(direction);
         bulletComponent.SetRotation(rotation);
+        
+        _audioManager.PlaySfx(AudioManager.SoundId.EnemyAttack);
       }
     }
   }

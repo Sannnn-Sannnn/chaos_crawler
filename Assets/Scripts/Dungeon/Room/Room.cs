@@ -11,7 +11,7 @@ namespace Dungeon
     private Door _eastDoor;
     private Door _southDoor;
     private Door _westDoor;
-
+    
     public void Awake()
     {
       var doors = transform.Find("Doors");

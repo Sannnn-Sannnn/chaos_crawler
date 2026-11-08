@@ -15,7 +15,7 @@ namespace Enemy.Attack
 
     private PlayerHealth _playerHealth;
     private GameManager _gameManager;
-
+    private AudioManager _audioManager;
 
     private void Awake()
     {
@@ -25,6 +25,8 @@ namespace Enemy.Attack
       damage += (floor - 1) * (int)damageIncrement;
       _playerHealth = GameObject.FindGameObjectWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
       _lastAttack = 0;
+      
+      _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
     }
 
     private void OnTriggerStay2D(Collider2D collider2D)
@@ -53,6 +55,8 @@ namespace Enemy.Attack
         var bulletComponent = attackInstance.GetComponent<EnemyMeleeAttack>();
         bulletComponent.SetDamage(damage);
         //bulletComponent.SetRotation(rotation);
+
+        _audioManager.PlaySfx(AudioManager.SoundId.EnemyAttack);
       }
     }
   }

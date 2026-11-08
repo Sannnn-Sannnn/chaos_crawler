@@ -16,7 +16,8 @@ namespace Weapon
     [SerializeField] private float speed = 12f;
     [SerializeField] private float bulletSpeedDeviation = 2f;
 
-    GameManager _gameManager;
+    private GameManager _gameManager;
+    private AudioManager  _audioManager;
     
     protected override void Awake()
     {
@@ -25,6 +26,7 @@ namespace Weapon
       _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
       var floor = _gameManager.CurrentFloor();
       damage += (floor - 1) * (int)damageIncrement;
+      _audioManager =  GameObject.FindGameObjectWithTag("GameManager").GetComponent<AudioManager>();
     }
     
     public override void Shoot(Vector2 aimDirection)
@@ -54,6 +56,7 @@ namespace Weapon
         }
       }
       Use();
+      _audioManager.PlaySfx(AudioManager.SoundId.PlayerAttack);
     }
   }
 }

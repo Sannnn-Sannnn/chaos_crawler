@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
   
   private PlayerHealth  _playerHealth;
 
+  private AudioManager _audioManager;
+
   private void Awake()
   {
     _rb = GetComponent<Rigidbody2D>();
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     _animator = GetComponentInChildren<Animator>();
     _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     _playerHealth = GameObject.FindGameObjectWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
+    _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
   }
 
   private void OnEnable()
@@ -93,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
     _isDashing = true;
     _stamina -= _maxStamina / 3;
     _animator.SetBool("isMoving", true);
+    _audioManager.PlaySfx(AudioManager.SoundId.PlayerDash);
 
     float elapsedTime = 0f;
     
