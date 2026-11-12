@@ -114,8 +114,9 @@ MonoBehaviour:
   - {fileID: 908729971913051575, guid: d830a0e555e30cc818b28a0a20ab18ee, type: 3}
   - {fileID: 908729971913051575, guid: 3bf0ac176fc095920b3942e40b99afdd, type: 3}
   - {fileID: 908729971913051575, guid: 7a1cfb93a0e813275b4487faba9ad814, type: 3}
-  minEnemies: 5
-  maxEnemies: 15
+  enemySpawnHighlight: {fileID: 4272969563467158491, guid: 25dffd41fb91af5f8908723438646d0b, type: 3}
+  minEnemies: 10
+  maxEnemies: 20
   roomHeight: 18
   roomWidth: 32
   minDoorDistance: 4

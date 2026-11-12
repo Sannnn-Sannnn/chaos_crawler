@@ -12,6 +12,8 @@ public class WeaponSlot : MonoBehaviour
 
   [SerializeField] private Image weaponSprite;
   [SerializeField] private TextMeshProUGUI text;
+  /* Provisorio hasta hacer una tipografía propia */
+  [SerializeField] private GameObject infText;
   
   [SerializeField] private Color defaultColour = new Color32(255, 255, 255, 90);
   [SerializeField] private Color selectedColour = new Color32(0, 255, 255, 255);
@@ -24,7 +26,17 @@ public class WeaponSlot : MonoBehaviour
   private void Update()
   {
     if (weapon == null) Empty();
-    else text.text = weapon.GetUsagesLeft() > 0 ? weapon.GetUsagesLeft().ToString() : "∞";
+    //else text.text = weapon.GetUsagesLeft() > 0 ? weapon.GetUsagesLeft().ToString() : "∞";
+    else if (weapon.GetUsagesLeft() > 0)
+    {
+      text.text = weapon.GetUsagesLeft().ToString();
+      infText.SetActive(false);
+    }
+    else
+    {
+      text.text = "";
+      infText.SetActive(true);
+    }
   }
 
   private void SetColour(Color newColour)
@@ -64,6 +76,7 @@ public class WeaponSlot : MonoBehaviour
     weapon = null;
     text.text = "";
     weaponSprite.enabled = false;
+    infText.SetActive(false);
   }
   
 }

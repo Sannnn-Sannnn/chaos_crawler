@@ -1,3 +1,4 @@
+using System.Collections;
 using Player;
 using UnityEngine;
 using Weapon;
@@ -10,10 +11,13 @@ namespace Enemy.Attack
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private int damage;
     [SerializeField] private float fireRate;
+    [SerializeField] private float randomAttackDeviation = 0.05f;
     private float _lastAttack = 0;
     [SerializeField] private float initialWait;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float damageIncrement;
+    [SerializeField] private float startTime = 1f;
+    private bool _canAttack = false;
 
     private PlayerHealth _playerHealth;
     private GameManager _gameManager;
@@ -25,16 +29,24 @@ namespace Enemy.Attack
       var floor = _gameManager.CurrentFloor();
 
       damage += (floor - 1) * (int)damageIncrement;
-
+      fireRate += Random.Range(-randomAttackDeviation, randomAttackDeviation);
       _playerHealth = GameObject.FindGameObjectWithTag("PlayerHitBox").GetComponent<PlayerHealth>();
       _lastAttack = Time.time + initialWait - fireRate;
       
       _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
+
+      StartCoroutine(WaitForStart());
+    }
+
+    private IEnumerator WaitForStart()
+    {
+      yield return new WaitForSeconds(startTime);
+      _canAttack = true;
     }
 
     private void Update()
     {
-      if (Time.time - _lastAttack > fireRate)
+      if (Time.time - _lastAttack > fireRate && _canAttack)
       {
         _lastAttack = Time.time;
         Attack();

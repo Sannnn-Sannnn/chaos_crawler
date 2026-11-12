@@ -7,6 +7,7 @@ namespace Dungeon
     {
         [Header("Enemy Prefabs")] [SerializeField]
         private GameObject[] enemyPrefabs;
+        [SerializeField] private GameObject enemySpawnHighlight;
 
         [Header("Room Setup")] [SerializeField]
         private int minEnemies;
@@ -76,6 +77,7 @@ namespace Dungeon
                 GameObject enemyPrefab = enemyPrefabs[enemyVariant];
 
                 GameObject enemyInstance = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                Instantiate(enemySpawnHighlight, enemyInstance.transform);
 
                 if (enemyInstance.TryGetComponent<EnemyHealth>(out var enemyHealth))
                 {

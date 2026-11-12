@@ -38,13 +38,12 @@ public class GameManager : MonoBehaviour
         pauseAction.action.performed -= OnPausePerformed;
     }
 
-    private void Awake()
+    private void Start()
     {
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         
         dungeonGenerator.RegenerateDungeon();
-        ResetPlayerPosition();
         
         var playerHitBox = GameObject.FindWithTag("PlayerHitBox");
         _playerHealth = playerHitBox.GetComponent<PlayerHealth>();
@@ -68,16 +67,8 @@ public class GameManager : MonoBehaviour
     public void NextFloor()
     {
         currentFloor++;
-        ResetPlayerPosition();
         _playerHealth.IncreaseMaxHealth(healthIncrement);
         dungeonGenerator.RegenerateDungeon();
-    }
-
-    private void ResetPlayerPosition()
-    {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        var playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
-        player.transform.position = playerSpawnPoint.transform.position;
     }
     
     // Death

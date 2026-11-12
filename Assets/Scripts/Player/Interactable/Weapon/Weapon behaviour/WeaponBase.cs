@@ -7,6 +7,7 @@ namespace Weapon
   {
     [Header("Weapon Base Setup")]
     [SerializeField] protected Transform firePoint;
+    [SerializeField] public SpriteRenderer highlight;
 
     [SerializeField] protected int usagesLeft;
 
@@ -23,6 +24,7 @@ namespace Weapon
     {
       PickupCollider = GetComponent<Collider2D>();
       WeaponSprite = transform.Find("Sprite")?.GetComponent<SpriteRenderer>();
+      highlight.color = new Color(255, 255, 255, 0);
     }
 
     // --- IINTERACTABLE ---
@@ -33,6 +35,7 @@ namespace Weapon
         controller.EquipWeapon(this);
       }
     }
+
 
     // Cada arma implementa su propia forma de disparar
     public abstract void Shoot(Vector2 aimDirection);
@@ -65,7 +68,11 @@ namespace Weapon
 
     public virtual void FlipSpriteY(bool flip)
     {
-      if (WeaponSprite != null) WeaponSprite.flipY = flip;
+      if (WeaponSprite != null)
+      {
+        WeaponSprite.flipY = flip;
+        highlight.flipY = flip;
+      }
     }
   }
 }

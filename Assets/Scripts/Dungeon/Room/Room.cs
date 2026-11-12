@@ -22,10 +22,6 @@ namespace Dungeon
         _southDoor = doors.transform.Find("South door").gameObject.GetComponent<Door>();
         _westDoor = doors.transform.Find("West door").gameObject.GetComponent<Door>();
       }
-      else
-      {
-        // Debug.Log($"No doors found at ({transform.position.x}, {transform.position.y})");
-      }
     }
 
     public void SetDoor(string direction, bool isDoor)

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -24,10 +25,13 @@ public class WeaponController : MonoBehaviour
 
     private WeaponBase _storedWeapon = null;
     
-    private IInteractable _currentInteractable;
+    private WeaponBase _currentWeaponBase;
     private bool _isHoldingClick = false;
     
     private AudioManager _audioManager;
+    
+    private readonly Color _transparentHighlight = new  Color(0f, 0f, 0f, 0f);
+    private readonly Color _visibleHighlight = new  Color(255, 255, 255, 255);
 
     private void Awake()
     {
@@ -161,9 +165,9 @@ public class WeaponController : MonoBehaviour
 
     private void OnActionStarted(InputAction.CallbackContext context)
     {
-        if (_currentInteractable != null)
+        if (_currentWeaponBase != null)
         {
-            _currentInteractable.Interact(this);
+            _currentWeaponBase.Interact(this);
             return;
         }
 
@@ -218,7 +222,7 @@ public class WeaponController : MonoBehaviour
 
         equippedWeapons[weaponIndex] = newWeapon;
         equippedWeapons[weaponIndex].SetEquipped(targetSlot);
-        _currentInteractable = null;
+        _currentWeaponBase = null;
 
         weaponRenderer.RenderWeapon(weaponIndex, newWeapon);
         
@@ -264,19 +268,25 @@ public class WeaponController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<IInteractable>(out var interactable))
+        if (other.TryGetComponent<WeaponBase>(out var weapon))
         {
-            _currentInteractable = interactable;
+            if (_currentWeaponBase != null && _currentWeaponBase != weapon)
+            {
+                _currentWeaponBase.highlight.color = _transparentHighlight;
+            }
+            _currentWeaponBase = weapon;
+            _currentWeaponBase.highlight.color = _visibleHighlight;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent<IInteractable>(out var interactable))
+        if (other.TryGetComponent<WeaponBase>(out var weapon))
         {
-            if (_currentInteractable == interactable)
+            if (_currentWeaponBase == weapon)
             {
-                _currentInteractable = null;
+                _currentWeaponBase.highlight.color = _transparentHighlight;
+                _currentWeaponBase = null;
             }
         }
     }

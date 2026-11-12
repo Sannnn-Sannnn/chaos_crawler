@@ -1,53 +1,35 @@
-MOST URGENT CHANGES:
-* Weapon sprites
-* Enemies animations
-* Audio
-* Menú
+Patches:
+* Pick with different button
+* Bigger distance from door
 
-Main changes:
+Technical changes:
 * Implement cannon
-* Implement PlayerWeaponSpawner (S.O. -> modifiers -> spawn)
-* Implement EnemySpawner (S.O. -> modifiers -> spawn)
-* Implement ConsumableSpawner (S.O. -> modifiers -> spawn)
-* Add dash in mouse direction 
-* Add custom font
-* Upgrade Main menu and pause/death screens
-* Destroy corridors on recreation
+* Implement laser
+* Add configurable dash in mouse direction
+* Better weapon spawner
+* Add pathfinding
+* Add configurable languages
+* Add main lobby
+* Add player skins
+* Add coins
+* Add skin shop
+* Add dungeon shop (weapons and consumables)
+* Add weapon stat info for pickup
+* Random dungeons -> room prefabs, music, enemies
+* Add bosses
+* Bullet rechargers
+
+Aesthetic changes:
 * Add ambience
+* Add highlight for interactables
+* Enemies animations
+* Explosion SFX
+* Better SFX volume
+* Smaller sliders
+* Dash trail
 
-Other changes:
-* Add weapon highlight for pickup
-* Add sprites
-
-Each Script has a min(f) and max(f) functions that determine the stats based on the current floor
-+ Enemies
-+ Weapons
-+ Consumables
-
----
-
-Done:
-* Add weapon highlight when selectable
-* Add multiple weapon slots
-* Display weapon left usages
-* Added basic death screen
-* Added GameManager
-* Equip weapons in next empty slot
-* Default weapon always equipped
-* Add death screen
-* Bigger rooms
-* Fix player spawn point -> delegate to DungeonGenerator
-* Added Pause screen
-* Added Main menu
-Post MVP:
-* Added dash
-* Upgraded UI
-* Fix weapon tilting
-* Add numeric HP indicator
-* +2 HP for every floor
-* Add stamina consumption
-* Add transitions between floors
-* Dash can pass through walls -> shouldn't
-* Add weapon change on numeric buttons
-* Change spare weapon and equip again when out of weapons
-* Random enemy spawn
+DONE IN 0.2.1:
+* Weapon highlight when pickable
+* Small time before enemies attack
+* Weapon sprites
+* Consumables sprite

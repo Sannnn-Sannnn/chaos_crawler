@@ -1,3 +1,5 @@
+using System.Collections;
+using NUnit.Framework.Constraints;
 using Player;
 using UnityEngine;
 using Weapon;
@@ -12,6 +14,8 @@ namespace Enemy.Attack
     [SerializeField] private float cooldown;
     [SerializeField] private float damageIncrement;
     private float _lastAttack = 0;
+    [SerializeField] private float startTime = 1f;
+    private bool _canAttack = false;
 
     private PlayerHealth _playerHealth;
     private GameManager _gameManager;
@@ -27,12 +31,20 @@ namespace Enemy.Attack
       _lastAttack = 0;
       
       _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
+
+      StartCoroutine(WaitForStart());
+    }
+
+    private IEnumerator WaitForStart()
+    {
+      yield return new WaitForSeconds(startTime);
+      _canAttack = true;
     }
 
     private void OnTriggerStay2D(Collider2D collider2D)
     {
       var player = collider2D.gameObject.GetComponent<PlayerHealth>();
-      if (player != null && Time.time - _lastAttack > cooldown)
+      if (player != null && Time.time - _lastAttack > cooldown && _canAttack)
       {
         _lastAttack = Time.time;
         Attack();

@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using Player;
 using UnityEngine;
 
@@ -13,6 +13,9 @@ namespace Enemy
 
     [SerializeField] private bool isLookingRight = true;
     private SpriteRenderer _spriteRenderer;
+    
+    [SerializeField] private float startTime = 1f;
+    private bool _canMove = false;
 
     private void Awake()
     {
@@ -20,6 +23,13 @@ namespace Enemy
       _rb = GetComponent<Rigidbody2D>();
 
       _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+      StartCoroutine(WaitForStart());
+    }
+
+    private IEnumerator WaitForStart()
+    {
+      yield return new WaitForSeconds(startTime);
+      _canMove = true;
     }
 
     private void FixedUpdate()
@@ -29,6 +39,7 @@ namespace Enemy
 
     private void Move()
     {
+      if (!_canMove) return;
       var playerPos = _player.Position();
       if (playerPos != null)
       {

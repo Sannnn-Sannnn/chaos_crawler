@@ -15,12 +15,13 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] private InputActionReference dashAction;
   [SerializeField] private float dashSpeed;
   [SerializeField] private float dashDuration;
+  [SerializeField] private float inmunityDuration;
 
-  private int _maxStamina = 100;
+  private float _maxStamina = 100f;
   [SerializeField] private float _stamina;
   [SerializeField] private float staminaRecovery;
   
-  private bool _isDashing = false;
+  [SerializeField] private bool _isDashing = false;
   private bool _canDash = true;
 
   private Rigidbody2D _rb;
@@ -97,16 +98,11 @@ public class PlayerMovement : MonoBehaviour
     _stamina -= _maxStamina / 3;
     _animator.SetBool("isMoving", true);
     _audioManager.PlaySfx(AudioManager.SoundId.PlayerDash);
-
-    float elapsedTime = 0f;
     
-    while (elapsedTime < dashDuration)
-    {
       _rb.linearVelocity = _dashDirection.normalized * dashSpeed; 
-      elapsedTime += Time.fixedDeltaTime;
-      yield return new WaitForFixedUpdate();
-    }
+      yield return new WaitForSeconds(dashDuration);
     _rb.linearVelocity = Vector2.zero;
+    yield return new WaitForSeconds(inmunityDuration);
     _isDashing = false;
     _animator.SetBool("isMoving", false);
   }
@@ -126,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
   }
 
 
-  public int MaxStamina() => _maxStamina;
+  public float MaxStamina() => _maxStamina;
   public float Stamina() => _stamina;
   public bool IsDashing() => _isDashing;
 }

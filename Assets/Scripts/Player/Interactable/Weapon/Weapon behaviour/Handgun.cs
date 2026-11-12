@@ -14,6 +14,12 @@ namespace Weapon
     [SerializeField] private float speed = 15f;
     [SerializeField] private float deviation = 0f;
     
+    [SerializeField] private float cooldownDeviation = 0.02f;
+
+    [Header("Audio")] [SerializeField] private int playSfxEveryXShots = 1;
+
+    private int _shotCounter;
+    
     private GameManager _gameManager;
     private AudioManager _audioManager;
 
@@ -24,15 +30,18 @@ namespace Weapon
       _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
       var floow = _gameManager.CurrentFloor();
       damage += (floow - 1) * (int)damageIncrement;
+
+      cooldown += Random.Range(-cooldownDeviation, cooldownDeviation);
       
       _audioManager = GameObject.FindWithTag("GameManager").GetComponent<AudioManager>();
-
+      _shotCounter = playSfxEveryXShots;
     }
 
     public override void Shoot(Vector2 aimDirection)
     {
       // Validar si está equipada y si ya pasó el cooldown
       if (!IsEquipped() || Time.time - LastShotTime < cooldown) return;
+      PlaySound();
       LastShotTime = Time.time;
 
       // Determinar posición de spawn (firePoint o la posición del arma)
@@ -53,8 +62,13 @@ namespace Weapon
         bulletComponent.SetDirection((randomDeviation * aimDirection).normalized);
       }
       Use();
-      
-      _audioManager.PlaySfx(AudioManager.SoundId.PlayerAttack);
+    }
+
+    private void PlaySound()
+    {
+      if (Time.time - LastShotTime >= cooldown * playSfxEveryXShots) _shotCounter = 0;
+      if (_shotCounter % playSfxEveryXShots == 0) _audioManager.PlaySfx(AudioManager.SoundId.PlayerAttack);
+      _shotCounter++;
     }
   }
 }

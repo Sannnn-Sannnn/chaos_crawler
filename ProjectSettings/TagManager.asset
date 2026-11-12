@@ -16,6 +16,8 @@ TagManager:
   - Enemy
   - PlayerSpawnPoint
   - Anchor
+  - NavMesh
+  - Node
   layers:
   - Default
   - TransparentFX

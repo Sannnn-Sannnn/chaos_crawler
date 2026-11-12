@@ -15,6 +15,7 @@ namespace Weapon
     [SerializeField] private float shotAngleDeviation = 15f;
     [SerializeField] private float speed = 12f;
     [SerializeField] private float bulletSpeedDeviation = 2f;
+    [SerializeField] private float cooldownDeviation = 0.02f;
 
     private GameManager _gameManager;
     private AudioManager  _audioManager;
@@ -26,6 +27,7 @@ namespace Weapon
       _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
       var floor = _gameManager.CurrentFloor();
       damage += (floor - 1) * (int)damageIncrement;
+      cooldown += Random.Range(-cooldownDeviation, cooldownDeviation);
       _audioManager =  GameObject.FindGameObjectWithTag("GameManager").GetComponent<AudioManager>();
     }
     

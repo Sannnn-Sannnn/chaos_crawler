@@ -11170,6 +11170,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7509816068791670872, guid: 1100b23a5a0d4bff78bacf8e56f37dfd, type: 3}
+      propertyPath: maxEnemies
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509816068791670872, guid: 1100b23a5a0d4bff78bacf8e56f37dfd, type: 3}
+      propertyPath: minEnemies
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8380405482268207036, guid: 1100b23a5a0d4bff78bacf8e56f37dfd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
